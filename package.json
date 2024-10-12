@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "pnpm run prebuild && vite",
+    "dev": "pnpm run kill-emulator && npm-run-all -p dev:*",
+    "dev:emulator": "firebase emulators:start --import=./emulator-data --export-on-exit=./emulator-data",
+    "dev:web": "pnpm run prebuild && vite",
     "build": "pnpm run prebuild && tsc -b && vite build",
     "lint": "npm-run-all lint:*",
     "lint:eslint": "biome lint .",
@@ -12,7 +14,9 @@
     "lint-fix": "biome lint --fix",
     "prebuild": "tsx ./src/scripts/prebuild.ts",
     "translations": "tsx ./src/scripts/check-unused-translations.ts",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "kill-emulator": "npx kill-port 9099 5010 9199 8090 8091 8080 5001",
+    "prepare": "husky"
   },
   "dependencies": {
     "@headlessui/tailwindcss": "^0.2.1",
@@ -42,6 +46,8 @@
     "cspell": "^8.15.1",
     "glob": "^11.0.0",
     "globals": "^15.11.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.47",
     "sass": "^1.79.5",
@@ -51,5 +57,17 @@
     "typescript-eslint": "^8.8.1",
     "vite": "^5.4.8",
     "vite-tsconfig-paths": "^5.0.1"
+  },
+  "engines": {
+    "node": "20",
+    "pnpm": ">=9.7"
+  },
+  "lint-staged": {
+    "*.{ts,js,tsx}": [
+      "biome lint"
+    ],
+    "*.{ts,json,js,md,tsx}": [
+      "cspell lint --config ./cspell.json"
+    ]
   }
 }

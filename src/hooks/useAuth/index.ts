@@ -6,11 +6,11 @@ import {
   firebaseSignup,
 } from "@utils/firebase";
 import { useMemo } from "react";
-import { useAppState } from "../../context/AppStateHooks";
+import { useAppDispatch, useAppState } from "../../context/AppStateHooks";
 
 export function useAuth() {
   const { auth } = useAppState();
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const signup = async (email: string, password: string) => {
     const res = await firebaseSignup(email, password);
