@@ -8,9 +8,11 @@ import {
 } from "@consts";
 import autoAnimate, { getTransitionSizes } from "@formkit/auto-animate";
 import { useAuth, useI18n, useTasks } from "@hooks";
-import { cx, debounce } from "@utils";
+import { DB, cx, debounce } from "@utils";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ListItem } from "./components";
+
+const countKey = "count";
 
 export default function Home() {
   const { t } = useI18n();
@@ -18,9 +20,10 @@ export default function Home() {
   const tasks = useTasks();
   const [name, setName] = useState("");
   const [busy, setBusy] = useState(false);
-  const [count, setCount] = useState({ open: 0, completed: 0 });
+  const [count, setCount] = useState(DB(countKey) || { open: 0, completed: 0 });
   const listRef = useRef<HTMLDivElement>(null);
 
+  // Get list of non-completed tasks
   const list = useMemo(() => {
     return Object.values(tasks.state.list)
       .filter((item) => !item.completedAt)
@@ -31,15 +34,15 @@ export default function Home() {
     if (!name) return;
 
     setBusy(true);
-
     await tasks.add(name);
-
     setBusy(false);
+
     setName("");
   };
 
   useEffect(() => {
     if (listRef.current) {
+      // Bouncy animation
       autoAnimate(listRef.current, (el, action, oldCoords, newCoords) => {
         let keyframes;
         if (action === "add") {
@@ -93,10 +96,12 @@ export default function Home() {
     }
   }, [listRef]);
 
+  // Update count every time the list changes
   useEffect(() => {
     debounce(() => {
       tasks.getCount().then((res) => {
         setCount(res as { open: number; completed: number });
+        DB(countKey, res);
       });
     }, SECOND);
   }, [list.length]);
