@@ -13,6 +13,7 @@
     "clsx",
     "firestore",
     "Firestore",
+    "formkit",
     "fullname",
     "headlessui",
     "remixicon",
