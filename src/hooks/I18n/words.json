@@ -4,6 +4,16 @@
     "ja": "",
     "pt": ""
   },
+  "taskCreated": {
+    "en": "Task <strong>%s</strong> created",
+    "ja": "タスク<strong>%s</strong>が作成されました",
+    "pt": "Tarefa <strong>%s</strong> criada"
+  },
+  "errorCreatingTask": {
+    "en": "Error creating task",
+    "ja": "タスク作成エラー",
+    "pt": "Erro ao criar tarefa"
+  },
   "taskDeleted": {
     "en": "Task <strong>%s</strong> deleted",
     "ja": "タスク<strong>%s</strong>が削除されました",

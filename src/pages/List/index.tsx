@@ -1,7 +1,13 @@
 import { YodoButton, YodoDivider, YodoIcon, YodoInput } from "@components";
-import { bgBrandSubtle, textBrandEmphasis, textContent, textContentEmphasis } from "@consts";
+import {
+  SECOND,
+  bgBrandSubtle,
+  textBrandEmphasis,
+  textContent,
+  textContentEmphasis,
+} from "@consts";
 import autoAnimate, { getTransitionSizes } from "@formkit/auto-animate";
-import { useAuth, useI18n, useTasks } from "@hooks";
+import { Toast, useAuth, useI18n, useTasks, useToast } from "@hooks";
 import { cx } from "@utils";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ListItem } from "./components";
@@ -10,6 +16,7 @@ export default function Home() {
   const { t } = useI18n();
   const auth = useAuth();
   const tasks = useTasks();
+  const { toast } = useToast();
   const [name, setName] = useState("");
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -19,9 +26,28 @@ export default function Home() {
     );
   }, [tasks.state.list]);
 
-  const createTask = () => {
+  const createTask = async () => {
     if (!name) return;
-    tasks.add(name);
+
+    const res = await tasks.add(name);
+    const options: Toast = {
+      title: t("task"),
+      timeout: SECOND * 2,
+    };
+
+    if (res) {
+      toast({
+        ...options,
+        variant: "success",
+        description: t("taskCreated", name),
+      });
+    } else {
+      toast({
+        ...options,
+        variant: "error",
+        description: t("errorCreatingTask"),
+      });
+    }
   };
 
   useEffect(() => {
