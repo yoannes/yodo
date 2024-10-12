@@ -16,7 +16,7 @@ interface Props {
 }
 
 const YodoButton: React.FC<Props> = ({
-  size = "xs",
+  size = "md",
   prefix,
   suffix,
   variant = "primary",
@@ -32,22 +32,7 @@ const YodoButton: React.FC<Props> = ({
     return <></>;
   };
 
-  let lightPadding = "";
-  if (variant === "light") {
-    if (size === "xs") {
-      lightPadding = "px-[10px] py-[6px]";
-    } else if (size === "md") {
-      lightPadding = "px-[16px] py-[8px]";
-    } else if (size === "lg") {
-      lightPadding = "px-[16px] py-[10px]";
-    }
-  }
-
-  const classes = cx(
-    block && "w-full",
-    lightPadding,
-    className,
-  );
+  const classes = cx(block && "w-full", size === "md" && "px-4 py-2", className);
 
   return (
     <Button variant={variant} className={classes} onClick={onClick}>

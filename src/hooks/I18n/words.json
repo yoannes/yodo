@@ -4,6 +4,26 @@
     "ja": "",
     "pt": ""
   },
+  "Create tasks and organize your to-do items": {
+    "en": "Create tasks and organize your to-do items",
+    "ja": "タスクを作成して、やることを整理",
+    "pt": "Crie tarefas e organize seus itens a fazer"
+  },
+  "You don't have any tasks": {
+    "en": "You don't have any tasks",
+    "ja": "タスクがありません",
+    "pt": "Você não tem tarefas"
+  },
+  "todos": {
+    "en": "Todos",
+    "ja": "やること",
+    "pt": "Tarefas"
+  },
+  "completed": {
+    "en": "Completed",
+    "ja": "完了",
+    "pt": "Concluídas"
+  },
   "create": {
     "en": "Create",
     "ja": "作成",
