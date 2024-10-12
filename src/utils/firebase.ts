@@ -142,26 +142,11 @@ function buildArgs(options: FirebaseOptions): QueryConstraint[] {
   const args: QueryConstraint[] = [];
 
   if (options.where && options.where.fieldPath) {
-    if (options.where.fieldPath === "updatedAt") {
-      if (Number(options.where.value) > 1e10) {
-        options.where.value = options.where.value as number;
-      } else {
-        options.where.value = (options.where.value as number) * 1000;
-      }
-    }
-
     args.push(where(options.where.fieldPath, options.where.opStr, options.where.value));
   }
 
   if (options.compoundWhere && options.compoundWhere.length) {
     options.compoundWhere.forEach((w) => {
-      if (w.fieldPath === "updatedAt") {
-        if (Number(w.value) > 1e10) {
-          w.value = w.value as number;
-        } else {
-          w.value = (w.value as number) * 1000;
-        }
-      }
       args.push(where(w.fieldPath, w.opStr, w.value));
     });
   }
@@ -293,8 +278,8 @@ export async function firebaseAdd<T>(
       payload.deleted = null;
     }
 
-    payload.createdAt = Date.now();
-    payload.updatedAt = Date.now();
+    payload.createdAt = dayjs().unix();
+    payload.updatedAt = dayjs().unix();
 
     let ref;
 
@@ -317,7 +302,7 @@ export async function firebaseAdd<T>(
 
 export function firebaseUpdate<T>(collationName: string, id: string, data: Partial<T>) {
   //@ts-ignore
-  data.updatedAt = Date.now();
+  data.updatedAt = dayjs().unix();
 
   logger("firebaseUpdate", data);
 
@@ -326,7 +311,7 @@ export function firebaseUpdate<T>(collationName: string, id: string, data: Parti
 
 export function firebaseDelete(collationName: string, id: string) {
   return updateDoc(doc(db, collationName, id), {
-    updatedAt: Date.now(),
+    updatedAt: dayjs().unix(),
     deleted: {
       at: dayjs().unix(),
     },

@@ -6,9 +6,11 @@ export const MONTH = DAY * 30;
 
 export const Collections = {
   Users: "Users",
+  Tasks: "Tasks",
 } as const;
 
 // Colors
+export const textBrandEmphasis = "text-tremor-brand-emphasis dark:text-dark-tremor-brand-emphasis";
 export const textContentEmphasis =
   "text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis";
 export const textContent = "text-tremor-content dark:text-dark-tremor-content";

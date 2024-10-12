@@ -9,6 +9,10 @@ export async function createUserIfNotExists(authUser: AuthUser) {
     where: { fieldPath: "email", opStr: "==", value: authUser.email },
   });
 
+  if (exists.status === "OK") {
+    return exists.results![0];
+  }
+
   if (exists.status === "NO_RESULTS") {
     const name = authUser.displayName?.split(" ") || [];
     const firstName = name.length > 0 ? name[0] : "";
@@ -26,10 +30,6 @@ export async function createUserIfNotExists(authUser: AuthUser) {
     if (res.status === "OK") {
       return res.result;
     }
-  }
-
-  if (exists.status === "OK") {
-    return exists.results![0];
   }
 
   return null;
