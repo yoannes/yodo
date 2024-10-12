@@ -2,6 +2,22 @@
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
   "dictionaries": [],
-  "ignorePaths": ["node_modules", ".vscode/extensions.json", "**/*words.json", "dist"],
-  "words": []
+  "ignorePaths": [
+    "node_modules",
+    ".vscode/extensions.json",
+    "**/*words.json",
+    "dist"
+  ],
+  "words": [
+    "biomejs",
+    "clsx",
+    "firestore",
+    "Firestore",
+    "fullname",
+    "headlessui",
+    "remixicon",
+    "Signin",
+    "tailwindcss",
+    "yodo"
+  ]
 }
