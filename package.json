@@ -1,0 +1,30 @@
+{
+  "name": "yodo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "npm-run-all lint:*",
+    "lint:eslint": "biome lint .",
+    "lint:cspell": "cspell lint \"**/*.{ts,json,js,md,tsx}\"",
+    "lint-fix": "biome lint --fix",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.3",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "globals": "^15.11.0",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.8.1",
+    "cspell": "^8.15.1",
+    "vite": "^5.4.8"
+  }
+}
