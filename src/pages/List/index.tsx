@@ -8,7 +8,7 @@ import {
 } from "@consts";
 import autoAnimate, { getTransitionSizes } from "@formkit/auto-animate";
 import { useAuth, useI18n, useTasks } from "@hooks";
-import { DB, cx, debounce } from "@utils";
+import { DB, cx, debounce, logger } from "@utils";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ListItem } from "./components";
 
@@ -100,6 +100,7 @@ export default function Home() {
   useEffect(() => {
     debounce(() => {
       tasks.getCount().then((res) => {
+        logger("update count", res);
         setCount(res as { open: number; completed: number });
         DB(countKey, res);
       });
