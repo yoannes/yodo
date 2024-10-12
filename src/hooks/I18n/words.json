@@ -3,5 +3,90 @@
     "en": "",
     "ja": "",
     "pt": ""
+  },
+  "Already have an account?": {
+    "en": "Already have an account?",
+    "ja": "すでにアカウントをお持ちですか？",
+    "pt": "Já tem uma conta?"
+  },
+  "agreeToTheTerms": {
+    "en": "I agree to the terms",
+    "ja": "利用規約に同意する",
+    "pt": "Concordo com os termos"
+  },
+  "Or, Signup with your email": {
+    "en": "Or, Signup with your email",
+    "ja": "または、メールアドレスでサインアップ",
+    "pt": "Ou, cadastre-se com seu email"
+  },
+  "don't have an account?": {
+    "en": "Don't have an account?",
+    "ja": "アカウントをお持ちでないですか？",
+    "pt": "Não tem uma conta?"
+  },
+  "signup": {
+    "en": "Sign Up",
+    "ja": "サインアップ",
+    "pt": "Cadastrar"
+  },
+  "email": {
+    "en": "Email",
+    "ja": "メールアドレス",
+    "pt": "Email"
+  },
+  "insertYourEmail": {
+    "en": "Insert your email",
+    "ja": "メールアドレスを入力",
+    "pt": "Insira seu email"
+  },
+  "pwd": {
+    "en": "Password",
+    "ja": "パスワード",
+    "pt": "Senha"
+  },
+  "insertYourPwd": {
+    "en": "Insert your password",
+    "ja": "パスワードを入力",
+    "pt": "Insira sua senha"
+  },
+  "forgotPwd": {
+    "en": "Forgot password?",
+    "ja": "パスワードをお忘れですか？",
+    "pt": "Esqueceu a senha?"
+  },
+  "Or, Login with your email": {
+    "en": "Or, Login with your email",
+    "ja": "または、メールアドレスでログイン",
+    "pt": "Ou, faça login com seu email"
+  },
+  "login": {
+    "en": "Login",
+    "ja": "ログイン",
+    "pt": "Entrar"
+  },
+  "continueWithGoogle": {
+    "en": "Continue with Google",
+    "ja": "Googleで続行",
+    "pt": "Continuar com o Google"
+  },
+  "signout": {
+    "en": "Sign Out",
+    "ja": "サインアウト",
+    "pt": "Sair"
+  },
+  "emailRequired": {
+    "en": "Email is required",
+    "ja": "メールアドレスは必須です",
+    "pt": "O email é obrigatório"
+  },
+  "pwdRequired": {
+    "en": "Password is required",
+    "ja": "パスワードは必須です",
+    "pt": "A senha é obrigatória"
+  },
+  "pleaseAgreeToTheTerms": {
+    "en": "Pease agree to the terms",
+    "ja": "利用規約に同意してください",
+    "pt": "Por favor, concorde com os termos"
   }
 }

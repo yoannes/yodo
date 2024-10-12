@@ -1,8 +1,5 @@
-// Tremor Raw cx [v0.0.0]
-
-import clsx, { type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { type ClassValue } from "clsx";
 
 export function cx(...args: ClassValue[]) {
-  return twMerge(clsx(...args));
+  return args.filter(String).join(" ");
 }

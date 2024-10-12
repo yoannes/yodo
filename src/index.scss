@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 16px;
+  font-family: Inter;
+}
+
+#root {
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+.text-xs {
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.text-xs-medium {
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.text {
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.text-medium {
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.text-semibold {
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.text-regular {
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.text-bold {
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.text-title {
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.text-2xl-bold {
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.text-4xl-bold {
+  font-family: Inter;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Custom horizontal scrollbar styles */
+.scroll-x {
+  &::-webkit-scrollbar {
+    height: 8px; /* Height of horizontal scrollbar */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; /* Track color */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px; /* Rounded corners */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #e4e4e7; /* Thumb color */
+
+    &:hover {
+      background: #f4f4f5; /* Thumb color on hover */
+    }
+  }
+
+  &.dark {
+    &::-webkit-scrollbar-thumb {
+      background: #27272a; /* Thumb color */
+
+      &:hover {
+        background: #3f3f46; /* Thumb color on hover */
+      }
+    }
+  }
+
+  /* Hide scrollbar on mobile */
+  @media (max-width: 767px) {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  /* Only show scrollbar on desktop when scrolling */
+  @media (min-width: 768px) {
+    &::-webkit-scrollbar {
+      display: none; /* Initially hide scrollbar */
+    }
+    &:hover::-webkit-scrollbar {
+      display: block; /* Show scrollbar on hover */
+    }
+    &.dark {
+      scrollbar-color: #27272a transparent; /* Firefox */
+    }
+
+    & {
+      scrollbar-width: thin; /* Firefox */
+      scrollbar-color: #e4e4e7 transparent; /* Firefox */
+    }
+  }
+
+  & {
+    /* Ensure scroll is smooth on iOS */
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.bg-red {
+  background: linear-gradient(0deg, rgba(32, 32, 35, 0.9) 0%, rgba(32, 32, 35, 0.9) 100%),
+    var(--rose-500, #f43f5e);
+}
+.bg-green {
+  background: linear-gradient(0deg, rgba(32, 32, 35, 0.9) 0%, rgba(32, 32, 35, 0.9) 100%),
+    var(--emerald-500, #10b981);
+}
+
+.red {
+  border: 1px solid red;
+}
+.green {
+  border: 1px solid green;
+}
+.blue {
+  border: 1px solid blue;
+}

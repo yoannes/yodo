@@ -7,7 +7,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { AppProvider } from "./context/AppStateContext.tsx";
 
-import "./index.css";
+import "./index.scss";
 
 dayjs.extend(localizedFormat);
 dayjs.extend(dayOfYear);

@@ -17,6 +17,8 @@
     "headlessui",
     "remixicon",
     "Signin",
+    "signout",
+    "signup",
     "tailwindcss",
     "yodo"
   ]
