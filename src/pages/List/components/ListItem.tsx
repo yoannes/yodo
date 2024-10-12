@@ -128,7 +128,8 @@ const ListItem: React.FC<Props> = ({ task }) => {
   return (
     <div className={root}>
       <div className="h-[72px] flex items-center gap-3">
-        <YodoIcon type="check" pointer onClick={completeHandler} />
+        <YodoIcon type="check" size={24} pointer onClick={completeHandler} />
+
         <div className="flex-grow">
           {edit ? (
             <YodoInput

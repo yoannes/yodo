@@ -12,6 +12,7 @@ export default function Home() {
   const tasks = useTasks();
   const [name, setName] = useState("");
   const [busy, setBusy] = useState(false);
+  const [count, setCount] = useState({ open: 0, completed: 0 });
   const listRef = useRef<HTMLDivElement>(null);
 
   const list = useMemo(() => {
@@ -86,6 +87,12 @@ export default function Home() {
     }
   }, [listRef]);
 
+  useEffect(() => {
+    tasks.getCount().then((res) => {
+      setCount(res as { open: number; completed: number });
+    });
+  }, []);
+
   return (
     <div className={root}>
       <div
@@ -110,10 +117,10 @@ export default function Home() {
 
       <div className="flex justify-between mt-6">
         <div className="text-bold text-cyan-500">
-          {t("todos")} <span className={badge}>0</span>
+          {t("todos")} <span className={badge}>{count.open}</span>
         </div>
         <div className="text-bold text-indigo-500">
-          {t("completed")} <span className={badge}>0</span>
+          {t("completed")} <span className={badge}>{count.completed}</span>
         </div>
       </div>
 

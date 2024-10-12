@@ -1,6 +1,12 @@
 import { Collections } from "@consts";
 import { TaskCollection } from "@types";
-import { firebaseAdd, firebaseDelete, firebaseUndelete, firebaseUpdate } from "@utils";
+import {
+  firebaseAdd,
+  firebaseDelete,
+  firebaseGetCount,
+  firebaseUndelete,
+  firebaseUpdate,
+} from "@utils";
 import { useMemo } from "react";
 import { useAppState } from "../../context/AppStateHooks";
 
@@ -57,6 +63,29 @@ export function useTasks() {
     }
   };
 
+  const getCount = async () => {
+    if (!auth.user) return;
+
+    const open = await firebaseGetCount({
+      collectionName: `${Collections.Users}/${auth.user.id}/${Collections.Tasks}`,
+      where: {
+        fieldPath: "completedAt",
+        opStr: "==",
+        value: null,
+      },
+    });
+    const completed = await firebaseGetCount({
+      collectionName: `${Collections.Users}/${auth.user.id}/${Collections.Tasks}`,
+      where: {
+        fieldPath: "completedAt",
+        opStr: "!=",
+        value: null,
+      },
+    });
+
+    return { open: open.result || 0, completed: completed.result || 0 };
+  };
+
   return useMemo(
     () => ({
       state: tasks,
@@ -64,6 +93,7 @@ export function useTasks() {
       edit,
       del,
       unDel,
+      getCount,
     }),
     [tasks],
   );
