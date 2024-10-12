@@ -1,8 +1,14 @@
 import { YodoButton, YodoDivider, YodoIcon, YodoInput } from "@components";
-import { bgBrandSubtle, textBrandEmphasis, textContent, textContentEmphasis } from "@consts";
+import {
+  SECOND,
+  bgBrandSubtle,
+  textBrandEmphasis,
+  textContent,
+  textContentEmphasis,
+} from "@consts";
 import autoAnimate, { getTransitionSizes } from "@formkit/auto-animate";
 import { useAuth, useI18n, useTasks } from "@hooks";
-import { cx } from "@utils";
+import { cx, debounce } from "@utils";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ListItem } from "./components";
 
@@ -88,10 +94,12 @@ export default function Home() {
   }, [listRef]);
 
   useEffect(() => {
-    tasks.getCount().then((res) => {
-      setCount(res as { open: number; completed: number });
-    });
-  }, []);
+    debounce(() => {
+      tasks.getCount().then((res) => {
+        setCount(res as { open: number; completed: number });
+      });
+    }, SECOND);
+  }, [list.length]);
 
   return (
     <div className={root}>
