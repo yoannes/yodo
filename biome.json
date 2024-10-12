@@ -6,6 +6,8 @@
       "**/*.md",
       "**/.vscode/",
       ".build/*",
+      "**/tsconfig.node.json",
+      "**/tsconfig.app.json",
       "cypress/e2e/_advanced-examples/**"
     ]
   },
