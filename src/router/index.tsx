@@ -1,7 +1,8 @@
-import type { LayoutProps } from "@layouts";
+import { DefaultLayout, type LayoutProps } from "@layouts";
 import { lazy } from "react";
 import { type RouteObject, createBrowserRouter } from "react-router-dom";
-import Home from "../pages/Home";
+import List from "../pages/List";
+import Reports from "../pages/Reports";
 import LazyRoute from "./LazyRoute";
 
 const Login = lazy(() => import("@/pages/Auth/Login"));
@@ -16,7 +17,8 @@ export type Route = RouteObject & {
 };
 
 export const routes = {
-  home: { path: "/", component: Home },
+  list: { path: "/", component: List, layout: DefaultLayout },
+  reports: { path: "/reports", component: Reports, layout: DefaultLayout },
   login: { path: "/login", component: Login, notProtected: true },
   signup: { path: "/signup", component: Signup, notProtected: true },
 } as const;

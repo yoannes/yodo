@@ -20,13 +20,17 @@ const buttonVariants = tv({
     variant: {
       primary: [
         // border
-        "border-transparent",
+        "border-transparent border-none",
+
         // text color
-        "text-white dark:text-white",
+        "text-tremor-content-inverted dark:text-dark-tremor-content-inverted",
+
         // background color
-        "bg-blue-500 dark:bg-blue-500",
+        "bg-cyan-500",
+
         // hover color
-        "hover:bg-blue-600 dark:hover:bg-blue-600",
+        "hover:bg-cyan-600",
+
         // disabled
         "disabled:bg-blue-300 disabled:text-white",
         "disabled:dark:bg-blue-800 disabled:dark:text-blue-400",
@@ -50,7 +54,7 @@ const buttonVariants = tv({
         // border
         "border-transparent",
         // text color
-        "text-gray-900 dark:text-gray-50",
+        "text-cyan-500 dark:text-cyan-500",
         // background color
         "bg-gray-200 dark:bg-gray-900",
         // hover color

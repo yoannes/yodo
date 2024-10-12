@@ -12,7 +12,10 @@ const SideMenu: React.FC = () => {
   const auth = useAuth();
   const nav = useNavigator();
 
-  const menuItems: { icon: IconType; value: string }[] = [{ icon: "home", value: "home" }];
+  const menuItems: { icon: IconType; value: string }[] = [
+    { icon: "list", value: "list" },
+    { icon: "activity", value: "reports" },
+  ];
 
   const actionHandler = (v: string) => {
     if (v === "theme") {

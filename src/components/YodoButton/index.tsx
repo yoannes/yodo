@@ -8,6 +8,7 @@ interface Props {
   variant?: "primary" | "secondary" | "light" | "ghost" | "destructive" | "link";
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   prefix?: IconType;
+  suffix?: IconType;
   block?: boolean;
   className?: string;
   busy?: boolean;
@@ -17,6 +18,7 @@ interface Props {
 const YodoButton: React.FC<Props> = ({
   size = "xs",
   prefix,
+  suffix,
   variant = "primary",
   children,
   block,
@@ -25,8 +27,8 @@ const YodoButton: React.FC<Props> = ({
   onClick,
 }) => {
   const Icon = () => {
-    if (prefix) return <YodoIcon type={prefix} size={20} />;
-    if (busy) return <YodoIcon type="loader" size={20} spin />;
+    if (prefix) return <YodoIcon type={prefix} className="mr-[6px]" size={20} />;
+    if (busy) return <YodoIcon type="loader" className="mr-[6px]" size={20} spin />;
     return <></>;
   };
 
@@ -42,8 +44,6 @@ const YodoButton: React.FC<Props> = ({
   }
 
   const classes = cx(
-    variant === "primary" && "!bg-cyan-500 hover:!bg-cyan-600 border-none",
-    variant === "light" && "!text-cyan-500 hover:!text-cyan-600",
     block && "w-full",
     lightPadding,
     className,
@@ -53,6 +53,7 @@ const YodoButton: React.FC<Props> = ({
     <Button variant={variant} className={classes} onClick={onClick}>
       {Icon()}
       {children}
+      {suffix && <YodoIcon type={suffix} className="ml-[6px]" size={20} />}
     </Button>
   );
 };

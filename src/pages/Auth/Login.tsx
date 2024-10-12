@@ -40,7 +40,7 @@ export default function Login() {
       return setErr({ password: t(res as Word) });
     }
 
-    nav.push({ name: "home" });
+    // nav.push({ name: "list" });
   };
   const signupHandler = () => {
     nav.push({ name: "signup" });
@@ -48,13 +48,12 @@ export default function Login() {
 
   useEffect(() => {
     if (auth.state.authUser) {
-      nav.push({ name: "home" });
+      setTheme("dark");
+      nav.push({ name: "list" });
+    } else {
+      setTheme("light");
     }
   }, [auth.state.authUser]);
-
-  useEffect(() => {
-    setTheme("light");
-  });
 
   return (
     <div className={classes.root}>

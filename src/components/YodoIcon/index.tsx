@@ -1,7 +1,7 @@
+import { cx } from "@utils";
 import React, { memo, useEffect, useState } from "react";
 import { IconType } from "./types";
 
-import { cx } from "@utils";
 import "./css.css";
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
 
 const local: Record<string, string> = {};
 
-const SageIcon: React.FC<Props> = memo(
+const YodoIcon: React.FC<Props> = memo(
   ({ type, size = 16, className, style, pointer, spin, onClick }) => {
     const [svgContent, setSvgContent] = useState(local[type] || "");
 
@@ -31,7 +31,6 @@ const SageIcon: React.FC<Props> = memo(
           local[type] = data;
           setSvgContent(data);
         })
-        // eslint-disable-next-line no-console
         .catch((error) => console.error("Error fetching SVG:", error));
     }, [type, svgContent]);
 
@@ -40,10 +39,9 @@ const SageIcon: React.FC<Props> = memo(
         style={{
           width: size,
           height: size,
-          minWidth: size,
           ...(style || {}),
         }}
-        className={cx("SageIcon", className, pointer && "cursor-pointer", spin && "animate-spin")}
+        className={cx("YodoIcon", className, pointer && "cursor-pointer", spin && "animate-spin")}
         dangerouslySetInnerHTML={{ __html: svgContent }}
         onClick={onClick}
       />
@@ -51,7 +49,7 @@ const SageIcon: React.FC<Props> = memo(
   },
 );
 
-SageIcon.displayName = "SageIcon";
+YodoIcon.displayName = "YodoIcon";
 
 const fetchAndCacheSVG = async (type: string) => {
   const cacheName = "svg-icons-cache";
@@ -93,4 +91,4 @@ const fetchAndCacheSVG = async (type: string) => {
   return networkResponse.text();
 };
 
-export default SageIcon;
+export default YodoIcon;

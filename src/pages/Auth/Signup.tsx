@@ -1,12 +1,13 @@
 import { YodoButton, YodoCheckbox, YodoDivider, YodoIcon, YodoInput } from "@components";
-import { Word, useAuth, useI18n, useNavigator } from "@hooks";
-import { useState } from "react";
+import { Word, useAuth, useI18n, useNavigator, useTheme } from "@hooks";
+import { useEffect, useState } from "react";
 import { classes } from "./styles";
 
 export default function Signup() {
   const { t } = useI18n();
   const nav = useNavigator();
   const auth = useAuth();
+  const { setTheme } = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [agree, setAgree] = useState(false);
@@ -34,14 +35,24 @@ export default function Signup() {
         return setErr({ email: t(res as Word) });
       }
 
+      setTheme("dark");
       return setErr({ password: t(res as Word) });
     }
 
-    nav.push({ name: "home" });
+    nav.push({ name: "list" });
   };
   const loginHandler = () => {
     nav.push({ name: "login" });
   };
+
+  useEffect(() => {
+    if (auth.state.authUser) {
+      setTheme("dark");
+      nav.push({ name: "list" });
+    } else {
+      setTheme("light");
+    }
+  }, [auth.state.authUser]);
 
   return (
     <div className={classes.root}>

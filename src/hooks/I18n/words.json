@@ -4,6 +4,41 @@
     "ja": "",
     "pt": ""
   },
+  "create": {
+    "en": "Create",
+    "ja": "作成",
+    "pt": "Criar"
+  },
+  "What do we have for today?": {
+    "en": "What do we have for today?",
+    "ja": "今日は何がありますか？",
+    "pt": "O que temos para hoje?"
+  },
+  "Hey %s, Let's check your schedule for today": {
+    "en": "Hey <strong>%s</strong>, Let's check your schedule for today",
+    "ja": "<strong>%s</strong>さん、今日のスケジュールを確認しましょう",
+    "pt": "Ei <strong>%s</strong>, Vamos verificar sua agenda para hoje"
+  },
+  "light": {
+    "en": "Light",
+    "ja": "ライト",
+    "pt": "Claro"
+  },
+  "dark": {
+    "en": "Dark",
+    "ja": "ダーク",
+    "pt": "Escuro"
+  },
+  "list": {
+    "en": "List",
+    "ja": "リスト",
+    "pt": "Lista"
+  },
+  "reports": {
+    "en": "Reports",
+    "ja": "レポート",
+    "pt": "Relatórios"
+  },
   "Already have an account?": {
     "en": "Already have an account?",
     "ja": "すでにアカウントをお持ちですか？",

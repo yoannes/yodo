@@ -38,7 +38,10 @@ const DefaultLayout: React.FC<LayoutProps> = ({ children }) => {
         <SideMenu />
       </div>
       <div className={cx(classes.resize, classes.borderLeft)} onMouseDown={startResizing} />
-      <div className="flex-1" style={{ width: `calc(100vw - ${sidebarWidth}px)` }}>
+      <div
+        className="flex-1 flex justify-center"
+        style={{ width: `calc(100vw - ${sidebarWidth}px)` }}
+      >
         {children}
       </div>
     </div>
