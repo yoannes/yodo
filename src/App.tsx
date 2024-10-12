@@ -1,3 +1,4 @@
+import { Toaster } from "@components";
 import { useAuth } from "@hooks";
 import { router } from "@router";
 import { RouterProvider } from "react-router-dom";
@@ -9,7 +10,12 @@ function App() {
     return "Loading";
   }
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <Toaster />
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;

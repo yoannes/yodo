@@ -11,12 +11,23 @@ interface Props {
   className?: string;
   label?: string;
   onChange?: (value: string | number) => void;
+  onEnter?: () => void;
+  onEsc?: () => void;
 }
 
 const YodoInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
   const id = useMemo(() => {
     return randomString();
   }, []);
+
+  const keydownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      props.onEnter?.();
+    }
+    if (e.key === "Escape") {
+      props.onEsc?.();
+    }
+  };
 
   return (
     <div>
@@ -34,6 +45,8 @@ const YodoInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
         placeholder={props.placeholder}
         className={props.className}
         hasError={!!props.errorMessage}
+        onKeyDown={keydownHandler}
+        onBlur={() => props.onEsc?.()}
         onChange={(e) => props.onChange?.(e.target.value)}
       />
 

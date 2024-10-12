@@ -42,6 +42,9 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const setDefaultListeners = (userId: string) => {
     firebaseListenToDocChanges({
       collectionName: `${Collections.Users}/${userId}/${Collections.Tasks}`,
+      orderBy: "createdAt",
+      orderByDirection: "desc",
+      limit: 10,
       callback(changes) {
         logger("changes", changes);
 

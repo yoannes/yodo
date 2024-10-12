@@ -318,6 +318,13 @@ export function firebaseDelete(collationName: string, id: string) {
   });
 }
 
+export function firebaseUndelete(collationName: string, id: string) {
+  return updateDoc(doc(db, collationName, id), {
+    updatedAt: dayjs().unix(),
+    deleted: null,
+  });
+}
+
 export function firebaseHardDelete(collationName: string, id: string) {
   return deleteDoc(doc(db, collationName, id));
 }

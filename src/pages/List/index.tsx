@@ -14,7 +14,9 @@ export default function Home() {
   const listRef = useRef<HTMLDivElement>(null);
 
   const list = useMemo(() => {
-    return Object.values(tasks.state.list);
+    return Object.values(tasks.state.list).sort((a, b) =>
+      a.createdAt.isBefore(b.createdAt) ? 1 : -1,
+    );
   }, [tasks.state.list]);
 
   const createTask = () => {
@@ -49,14 +51,14 @@ export default function Home() {
             oldCoords!,
             newCoords!,
           );
-          const start: Record<string, string> = {
+          const start: Keyframe = {
             transform: `translate(${deltaX}px, ${deltaY}px)`,
           };
-          const mid: Record<string, string | number> = {
+          const mid: Keyframe = {
             transform: `translate(${deltaX * -0.15}px, ${deltaY * -0.15}px)`,
             offset: 0.75,
           };
-          const end: Record<string, string> = { transform: `translate(0, 0)` };
+          const end: Keyframe = { transform: `translate(0, 0)` };
           if (widthFrom !== widthTo) {
             start.width = `${widthFrom}px`;
             mid.width = `${widthFrom >= widthTo ? widthTo / 1.05 : widthTo * 1.05}px`;

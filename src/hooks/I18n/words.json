@@ -4,6 +4,41 @@
     "ja": "",
     "pt": ""
   },
+  "taskDeleted": {
+    "en": "Task <strong>%s</strong> deleted",
+    "ja": "タスク<strong>%s</strong>が削除されました",
+    "pt": "Tarefa <strong>%s</strong> excluída"
+  },
+  "errorDeleting": {
+    "en": "Error deleting",
+    "ja": "削除エラー",
+    "pt": "Erro ao excluir"
+  },
+  "revertChanges": {
+    "en": "Revert changes",
+    "ja": "変更を元に戻す",
+    "pt": "Reverter alterações"
+  },
+  "undo": {
+    "en": "Undo",
+    "ja": "元に戻す",
+    "pt": "Desfazer"
+  },
+  "errorUpdating": {
+    "en": "Error updating",
+    "ja": "更新エラー",
+    "pt": "Erro ao atualizar"
+  },
+  "taskUpdated": {
+    "en": "Task <strong>%s</strong> updated",
+    "ja": "タスク<strong>%s</strong>が更新されました",
+    "pt": "Tarefa <strong>%s</strong> atualizada"
+  },
+  "task": {
+    "en": "Task",
+    "ja": "タスク",
+    "pt": "Tarefa"
+  },
   "Create tasks and organize your to-do items": {
     "en": "Create tasks and organize your to-do items",
     "ja": "タスクを作成して、やることを整理",

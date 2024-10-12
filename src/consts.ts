@@ -33,7 +33,7 @@ export const focusInput = [
   // ring color
   "focus:ring-blue-200 focus:dark:ring-blue-700/30",
   // border color
-  "focus:border-blue-500 focus:dark:border-blue-700",
+  "focus:border-cyan-600 focus:dark:border-cyan-600",
 ];
 
 // Tremor Raw focusRing [v0.0.1]
