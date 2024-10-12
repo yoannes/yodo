@@ -4,6 +4,11 @@
     "ja": "",
     "pt": ""
   },
+  "taskCompleted": {
+    "en": "Task <strong>%s</strong> completed",
+    "ja": "タスク<strong>%s</strong>が完了しました",
+    "pt": "Tarefa <strong>%s</strong> concluída"
+  },
   "taskCreated": {
     "en": "Task <strong>%s</strong> created",
     "ja": "タスク<strong>%s</strong>が作成されました",

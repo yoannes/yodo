@@ -21,12 +21,12 @@ export function useTasks() {
     return res.status === "OK";
   };
 
-  const edit = async (id: string, title: string) => {
-    if (!auth.user || !title) return;
+  const edit = async (id: string, payload: Partial<TaskCollection>) => {
+    if (!auth.user) return;
 
     try {
       const collection = `${Collections.Users}/${auth.user.id}/${Collections.Tasks}`;
-      await firebaseUpdate<TaskCollection>(collection, id, { title });
+      await firebaseUpdate<TaskCollection>(collection, id, payload);
       return true;
     } catch (error) {
       return false;

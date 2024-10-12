@@ -1,13 +1,7 @@
 import { YodoButton, YodoDivider, YodoIcon, YodoInput } from "@components";
-import {
-  SECOND,
-  bgBrandSubtle,
-  textBrandEmphasis,
-  textContent,
-  textContentEmphasis,
-} from "@consts";
+import { bgBrandSubtle, textBrandEmphasis, textContent, textContentEmphasis } from "@consts";
 import autoAnimate, { getTransitionSizes } from "@formkit/auto-animate";
-import { Toast, useAuth, useI18n, useTasks, useToast } from "@hooks";
+import { useAuth, useI18n, useTasks } from "@hooks";
 import { cx } from "@utils";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ListItem } from "./components";
@@ -16,38 +10,25 @@ export default function Home() {
   const { t } = useI18n();
   const auth = useAuth();
   const tasks = useTasks();
-  const { toast } = useToast();
   const [name, setName] = useState("");
+  const [busy, setBusy] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
 
   const list = useMemo(() => {
-    return Object.values(tasks.state.list).sort((a, b) =>
-      a.createdAt.isBefore(b.createdAt) ? 1 : -1,
-    );
+    return Object.values(tasks.state.list)
+      .filter((item) => !item.completedAt)
+      .sort((a, b) => (a.createdAt.isBefore(b.createdAt) ? 1 : -1));
   }, [tasks.state.list]);
 
   const createTask = async () => {
     if (!name) return;
 
-    const res = await tasks.add(name);
-    const options: Toast = {
-      title: t("task"),
-      timeout: SECOND * 2,
-    };
+    setBusy(true);
 
-    if (res) {
-      toast({
-        ...options,
-        variant: "success",
-        description: t("taskCreated", name),
-      });
-    } else {
-      toast({
-        ...options,
-        variant: "error",
-        description: t("errorCreatingTask"),
-      });
-    }
+    await tasks.add(name);
+
+    setBusy(false);
+    setName("");
   };
 
   useEffect(() => {
@@ -122,7 +103,7 @@ export default function Home() {
             onChange={(v) => setName(v as string)}
           />
         </div>
-        <YodoButton suffix="plus-circle" onClick={createTask}>
+        <YodoButton suffix="plus-circle" busy={busy} onClick={createTask}>
           {t("create")}
         </YodoButton>
       </div>

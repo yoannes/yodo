@@ -3,6 +3,7 @@ import { SECOND, bgColor, borderColor } from "@consts";
 import { Toast, useI18n, useTasks, useToast } from "@hooks";
 import { Task } from "@types";
 import { cx } from "@utils";
+import dayjs from "dayjs";
 import React, { useEffect, useRef, useState } from "react";
 
 interface Props {
@@ -25,7 +26,7 @@ const ListItem: React.FC<Props> = ({ task }) => {
     if (!title || title === task.title) return;
 
     const originalTitle = task.title;
-    const res = await tasks.edit(task.id, title);
+    const res = await tasks.edit(task.id, { title });
     const options: Toast = {
       title: t("task"),
       timeout: SECOND * 5,
@@ -40,7 +41,39 @@ const ListItem: React.FC<Props> = ({ task }) => {
           altText: t("revertChanges"),
           label: t("undo"),
           async onClick() {
-            await tasks.edit(task.id, originalTitle);
+            await tasks.edit(task.id, { title: originalTitle });
+            _toast.dismiss();
+          },
+        },
+      });
+
+      setEdit(false);
+    } else {
+      toast({
+        ...options,
+        variant: "error",
+        description: t("errorUpdating"),
+      });
+    }
+  };
+
+  const completeHandler = async () => {
+    const res = await tasks.edit(task.id, { completedAt: dayjs().unix() });
+    const options: Toast = {
+      title: t("task"),
+      timeout: SECOND * 5,
+    };
+
+    if (res) {
+      const _toast = toast({
+        ...options,
+        variant: "success",
+        description: t("taskCompleted", task.title),
+        action: {
+          altText: t("revertChanges"),
+          label: t("undo"),
+          async onClick() {
+            await tasks.edit(task.id, { completedAt: null });
             _toast.dismiss();
           },
         },
@@ -95,7 +128,7 @@ const ListItem: React.FC<Props> = ({ task }) => {
   return (
     <div className={root}>
       <div className="h-[72px] flex items-center gap-3">
-        <YodoIcon type="check" />
+        <YodoIcon type="check" pointer onClick={completeHandler} />
         <div className="flex-grow">
           {edit ? (
             <YodoInput
