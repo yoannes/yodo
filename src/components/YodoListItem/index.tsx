@@ -104,11 +104,11 @@ const YodoListItem: React.FC<Props> = ({ task }) => {
           onClick={completeHandler}
         />
 
-        <div className="flex-grow">
-          <span
-            className={cx(task.completedAt ? "line-through " + textContent : "cursor-pointer")}
-            onClick={editHandler}
-          >
+        <div
+          className={cx("flex-grow", !task.completedAt && "cursor-pointer")}
+          onClick={editHandler}
+        >
+          <span className={cx(task.completedAt && "line-through " + textContent)}>
             {task.title}
           </span>
         </div>
