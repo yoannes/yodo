@@ -18,6 +18,8 @@ export type Route = RouteObject & {
 
 export const routes = {
   list: { path: "/", component: List, layout: DefaultLayout },
+  newItem: { path: "/new", component: List, layout: DefaultLayout },
+  editItem: { path: "/edit/:id", component: List, layout: DefaultLayout },
   reports: { path: "/reports", component: Reports, layout: DefaultLayout },
   login: { path: "/login", component: Login, notProtected: true },
   signup: { path: "/signup", component: Signup, notProtected: true },

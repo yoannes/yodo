@@ -3,6 +3,7 @@ import { Dayjs } from "dayjs";
 // Common fields between TaskCollection and Task
 type TaskCommon = {
   title: string;
+  description: string;
 };
 
 export type TaskId = string;

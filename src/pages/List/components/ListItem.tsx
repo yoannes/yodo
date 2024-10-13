@@ -1,6 +1,6 @@
 import { YodoIcon, YodoInput } from "@components";
 import { SECOND, bgColor, borderColor } from "@consts";
-import { Toast, useI18n, useTasks, useToast } from "@hooks";
+import { Toast, useI18n, useNavigator, useTasks, useToast } from "@hooks";
 import { Task } from "@types";
 import { cx } from "@utils";
 import dayjs from "dayjs";
@@ -11,17 +11,20 @@ interface Props {
 }
 
 const ListItem: React.FC<Props> = ({ task }) => {
+  const nav = useNavigator();
   const { t } = useI18n();
-  const tasks = useTasks();
   const { toast } = useToast();
+  const tasks = useTasks();
   const [edit, setEdit] = useState(false);
   const [title, setTitle] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const editHandler = () => {
-    setTitle(task.title);
-    setEdit(true);
+    nav.push({ name: "editItem", params: { id: task.id } });
+    // setTitle(task.title);
+    // setEdit(true);
   };
+
   const saveHandler = async () => {
     if (!title || title === task.title) return;
 

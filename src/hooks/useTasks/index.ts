@@ -15,11 +15,12 @@ export function useTasks() {
   const { tasks, auth } = useAppState();
   const { setTasks } = useAppDispatch();
 
-  const add = async (title: string) => {
+  const add = async (title: string, description: string) => {
     if (!auth.user || !title) return;
 
     const t = {
       title,
+      description,
       completedAt: null,
     };
 

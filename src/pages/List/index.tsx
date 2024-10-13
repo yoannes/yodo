@@ -1,18 +1,18 @@
-import { YodoButton, YodoDivider, YodoInput } from "@components";
+import { YodoButton, YodoDivider } from "@components";
 import { bgBrandSubtle, textContent, textContentEmphasis } from "@consts";
-import { useAuth, useI18n, useTasks } from "@hooks";
+import { useAuth, useI18n, useNavigator, useTasks } from "@hooks";
 import { bouncyAnimation, cx } from "@utils";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ListItem } from "./components";
+import { ListItem, TaskModal } from "./components";
 
 export default function Home() {
+  const nav = useNavigator();
   const { t, lang } = useI18n();
   const auth = useAuth();
   const tasks = useTasks();
-  const [name, setName] = useState("");
-  const [busy, setBusy] = useState(false);
   const [congratsPhrase, setCongratsPhrase] = useState(-1);
   const [listLength, setListLength] = useState(-1);
+
   const listRef = useRef<HTMLDivElement>(null);
 
   const congratsPhrases = useMemo(
@@ -40,16 +40,6 @@ export default function Home() {
     };
   }, [tasks.state.list]);
 
-  const createTask = async () => {
-    if (!name) return;
-
-    setBusy(true);
-    await tasks.add(name);
-    setBusy(false);
-
-    setName("");
-  };
-
   useEffect(() => {
     if (!list.length && listLength === -1) return;
     setListLength(list.length);
@@ -74,26 +64,13 @@ export default function Home() {
         }}
       />
 
-      <div className="flex gap-2 mt-6">
-        <div className="flex-grow">
-          <YodoInput
-            value={name}
-            placeholder={t("What do we have for today?")}
-            onChange={(v) => setName(v as string)}
-          />
-        </div>
-        <YodoButton suffix="plus-circle" busy={busy} onClick={createTask}>
-          {t("create")}
-        </YodoButton>
-      </div>
-
-      <div className="flex justify-between mt-6">
+      <div className="flex justify-between items-center gap-2 mt-6">
         <div className="text-bold text-cyan-500">
           {t("todos")} <span className={badge}>{count.open}</span>
         </div>
-        <div className="text-bold text-indigo-500">
-          {t("completed")} <span className={badge}>{count.completed}</span>
-        </div>
+        <YodoButton suffix="plus-circle" onClick={() => nav.push({ name: "newItem" })}>
+          {t("create")}
+        </YodoButton>
       </div>
 
       <div>
@@ -137,6 +114,8 @@ export default function Home() {
           </div>
         )}
       </div>
+
+      <TaskModal />
     </div>
   );
 }

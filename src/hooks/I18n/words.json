@@ -5,6 +5,60 @@
     "pt": "",
     "es": ""
   },
+  "saving": {
+    "en": "Saving",
+    "ja": "保存中",
+    "pt": "Salvando",
+    "es": "Guardando"
+  },
+  "editTask": {
+    "en": "Edit Task",
+    "ja": "タスクを編集",
+    "pt": "Editar Tarefa",
+    "es": "Editar Tarea"
+  },
+  "Try to take over the world": {
+    "en": "Try to take over the world",
+    "ja": "世界を支配しよう",
+    "pt": "Tente dominar o mundo",
+    "es": "Intenta dominar el mundo"
+  },
+  "Some how we will take over the world": {
+    "en": "Some how we will take over the world",
+    "ja": "どうにかして世界を支配します",
+    "pt": "De alguma forma vamos dominar o mundo",
+    "es": "De alguna manera vamos a dominar el mundo"
+  },
+  "taskTitle": {
+    "en": "Task Title",
+    "ja": "タスクタイトル",
+    "pt": "Título da Tarefa",
+    "es": "Título de la Tarea"
+  },
+  "taskDescription": {
+    "en": "Task Description",
+    "ja": "タスクの説明",
+    "pt": "Descrição da Tarefa",
+    "es": "Descripción de la Tarea"
+  },
+  "save": {
+    "en": "Save",
+    "ja": "保存",
+    "pt": "Salvar",
+    "es": "Guardar"
+  },
+  "cancel": {
+    "en": "Cancel",
+    "ja": "キャンセル",
+    "pt": "Cancelar",
+    "es": "Cancelar"
+  },
+  "createTask": {
+    "en": "Create Task",
+    "ja": "タスクを作成",
+    "pt": "Criar Tarefa",
+    "es": "Crear Tarea"
+  },
   "You completed all your tasks. Proud of you!": {
     "en": "You completed all your tasks. Proud of you!",
     "ja": "すべてのタスクが完了しました。あなたに誇りです！",
