@@ -1,4 +1,4 @@
-import { YodoIcon, YodoInput } from "@components";
+import { YodoIcon } from "@components";
 import { SECOND, bgColor, borderColor } from "@consts";
 import { Toast, useI18n, useNavigator, useTasks, useToast } from "@hooks";
 import { Task } from "@types";
@@ -16,48 +16,10 @@ const ListItem: React.FC<Props> = ({ task }) => {
   const { toast } = useToast();
   const tasks = useTasks();
   const [edit, setEdit] = useState(false);
-  const [title, setTitle] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const editHandler = () => {
     nav.push({ name: "editItem", params: { id: task.id } });
-    // setTitle(task.title);
-    // setEdit(true);
-  };
-
-  const saveHandler = async () => {
-    if (!title || title === task.title) return;
-
-    const originalTitle = task.title;
-    const res = await tasks.edit(task.id, { title });
-    const options: Toast = {
-      title: t("task"),
-      timeout: SECOND * 5,
-    };
-
-    if (res) {
-      const _toast = toast({
-        ...options,
-        variant: "success",
-        description: t("taskUpdated", title),
-        action: {
-          altText: t("revertChanges"),
-          label: t("undo"),
-          async onClick() {
-            await tasks.edit(task.id, { title: originalTitle });
-            _toast.dismiss();
-          },
-        },
-      });
-
-      setEdit(false);
-    } else {
-      toast({
-        ...options,
-        variant: "error",
-        description: t("errorUpdating"),
-      });
-    }
   };
 
   const completeHandler = async () => {
@@ -134,17 +96,9 @@ const ListItem: React.FC<Props> = ({ task }) => {
         <YodoIcon type="check" size={24} pointer onClick={completeHandler} />
 
         <div className="flex-grow">
-          {edit ? (
-            <YodoInput
-              ref={inputRef}
-              value={title}
-              onEnter={saveHandler}
-              onChange={(v) => setTitle(v as string)}
-              onEsc={() => setEdit(false)}
-            />
-          ) : (
-            <span onClick={editHandler}>{task.title}</span>
-          )}
+          <span className="cursor-pointer" onClick={editHandler}>
+            {task.title}
+          </span>
         </div>
 
         <YodoIcon type="trash-2" pointer onClick={delHandler} />
