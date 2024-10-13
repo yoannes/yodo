@@ -7,191 +7,229 @@
   "taskCompleted": {
     "en": "Task <strong>%s</strong> completed",
     "ja": "タスク<strong>%s</strong>が完了しました",
-    "pt": "Tarefa <strong>%s</strong> concluída"
+    "pt": "Tarefa <strong>%s</strong> concluída",
+    "es": "Tarea <strong>%s</strong> completada"
   },
   "taskCreated": {
     "en": "Task <strong>%s</strong> created",
     "ja": "タスク<strong>%s</strong>が作成されました",
-    "pt": "Tarefa <strong>%s</strong> criada"
+    "pt": "Tarefa <strong>%s</strong> criada",
+    "es": "Tarea <strong>%s</strong> creada"
   },
   "errorCreatingTask": {
     "en": "Error creating task",
     "ja": "タスク作成エラー",
-    "pt": "Erro ao criar tarefa"
+    "pt": "Erro ao criar tarefa",
+    "es": "Error al crear la tarea"
   },
   "taskDeleted": {
     "en": "Task <strong>%s</strong> deleted",
     "ja": "タスク<strong>%s</strong>が削除されました",
-    "pt": "Tarefa <strong>%s</strong> excluída"
+    "pt": "Tarefa <strong>%s</strong> excluída",
+    "es": "Tarea <strong>%s</strong> eliminada"
   },
   "errorDeleting": {
     "en": "Error deleting",
     "ja": "削除エラー",
-    "pt": "Erro ao excluir"
+    "pt": "Erro ao excluir",
+    "es": "Error al eliminar"
   },
   "revertChanges": {
     "en": "Revert changes",
     "ja": "変更を元に戻す",
-    "pt": "Reverter alterações"
+    "pt": "Reverter alterações",
+    "es": "Revertir cambios"
   },
   "undo": {
     "en": "Undo",
     "ja": "元に戻す",
-    "pt": "Desfazer"
+    "pt": "Desfazer",
+    "es": "Deshacer"
   },
   "errorUpdating": {
     "en": "Error updating",
     "ja": "更新エラー",
-    "pt": "Erro ao atualizar"
+    "pt": "Erro ao atualizar",
+    "es": "Error al actualizar"
   },
   "taskUpdated": {
     "en": "Task <strong>%s</strong> updated",
     "ja": "タスク<strong>%s</strong>が更新されました",
-    "pt": "Tarefa <strong>%s</strong> atualizada"
+    "pt": "Tarefa <strong>%s</strong> atualizada",
+    "es": "Tarea <strong>%s</strong> actualizada"
   },
   "task": {
     "en": "Task",
     "ja": "タスク",
-    "pt": "Tarefa"
+    "pt": "Tarefa",
+    "es": "Tarea"
   },
   "Create tasks and organize your to-do items": {
     "en": "Create tasks and organize your to-do items",
     "ja": "タスクを作成して、やることを整理",
-    "pt": "Crie tarefas e organize seus itens a fazer"
+    "pt": "Crie tarefas e organize seus itens a fazer",
+    "es": "Cree tareas y organice sus elementos por hacer"
   },
   "You don't have any tasks": {
     "en": "You don't have any tasks",
     "ja": "タスクがありません",
-    "pt": "Você não tem tarefas"
+    "pt": "Você não tem tarefas",
+    "es": "No tienes tareas"
   },
   "todos": {
     "en": "Todos",
     "ja": "やること",
-    "pt": "Tarefas"
+    "pt": "Tarefas",
+    "es": "Tareas"
   },
   "completed": {
     "en": "Completed",
     "ja": "完了",
-    "pt": "Concluídas"
+    "pt": "Concluídas",
+    "es": "Completadas"
   },
   "create": {
     "en": "Create",
     "ja": "作成",
-    "pt": "Criar"
+    "pt": "Criar",
+    "es": "Crear"
   },
   "What do we have for today?": {
     "en": "What do we have for today?",
     "ja": "今日は何がありますか？",
-    "pt": "O que temos para hoje?"
+    "pt": "O que temos para hoje?",
+    "es": "¿Qué tenemos para hoy?"
   },
   "Hey %s, Let's check your schedule for today": {
     "en": "Hey <strong>%s</strong>, Let's check your schedule for today",
     "ja": "<strong>%s</strong>さん、今日のスケジュールを確認しましょう",
-    "pt": "Ei <strong>%s</strong>, Vamos verificar sua agenda para hoje"
+    "pt": "Ei <strong>%s</strong>, Vamos verificar sua agenda para hoje",
+    "es": "Hola <strong>%s</strong>, Vamos a revisar tu agenda para hoy"
   },
   "light": {
     "en": "Light",
     "ja": "ライト",
-    "pt": "Claro"
+    "pt": "Claro",
+    "es": "Luz"
   },
   "dark": {
     "en": "Dark",
     "ja": "ダーク",
-    "pt": "Escuro"
+    "pt": "Escuro",
+    "es": "Oscuro"
   },
   "list": {
     "en": "List",
     "ja": "リスト",
-    "pt": "Lista"
+    "pt": "Lista",
+    "es": "Lista"
   },
   "reports": {
     "en": "Reports",
     "ja": "レポート",
-    "pt": "Relatórios"
+    "pt": "Relatórios",
+    "es": "Informes"
   },
   "Already have an account?": {
     "en": "Already have an account?",
     "ja": "すでにアカウントをお持ちですか？",
-    "pt": "Já tem uma conta?"
+    "pt": "Já tem uma conta?",
+    "es": "¿Ya tienes una cuenta?"
   },
   "agreeToTheTerms": {
     "en": "I agree to the terms",
     "ja": "利用規約に同意する",
-    "pt": "Concordo com os termos"
+    "pt": "Concordo com os termos",
+    "es": "Estoy de acuerdo con los términos"
   },
   "Or, Signup with your email": {
     "en": "Or, Signup with your email",
     "ja": "または、メールアドレスでサインアップ",
-    "pt": "Ou, cadastre-se com seu email"
+    "pt": "Ou, cadastre-se com seu email",
+    "es": "O, Regístrese con su correo electrónico"
   },
   "don't have an account?": {
     "en": "Don't have an account?",
     "ja": "アカウントをお持ちでないですか？",
-    "pt": "Não tem uma conta?"
+    "pt": "Não tem uma conta?",
+    "es": "¿No tienes una cuenta?"
   },
   "signup": {
     "en": "Sign Up",
     "ja": "サインアップ",
-    "pt": "Cadastrar"
+    "pt": "Cadastrar",
+    "es": "Regístrate"
   },
   "email": {
     "en": "Email",
     "ja": "メールアドレス",
-    "pt": "Email"
+    "pt": "Email",
+    "es": "Correo electrónico"
   },
   "insertYourEmail": {
     "en": "Insert your email",
     "ja": "メールアドレスを入力",
-    "pt": "Insira seu email"
+    "pt": "Insira seu email",
+    "es": "Inserte su correo electrónico"
   },
   "pwd": {
     "en": "Password",
     "ja": "パスワード",
-    "pt": "Senha"
+    "pt": "Senha",
+    "es": "Contraseña"
   },
   "insertYourPwd": {
     "en": "Insert your password",
     "ja": "パスワードを入力",
-    "pt": "Insira sua senha"
+    "pt": "Insira sua senha",
+    "es": "Inserte su contraseña"
   },
   "forgotPwd": {
     "en": "Forgot password?",
     "ja": "パスワードをお忘れですか？",
-    "pt": "Esqueceu a senha?"
+    "pt": "Esqueceu a senha?",
+    "es": "¿Olvidaste la contraseña?"
   },
   "Or, Login with your email": {
     "en": "Or, Login with your email",
     "ja": "または、メールアドレスでログイン",
-    "pt": "Ou, faça login com seu email"
+    "pt": "Ou, faça login com seu email",
+    "es": "O, Inicie sesión con su correo electrónico"
   },
   "login": {
     "en": "Login",
     "ja": "ログイン",
-    "pt": "Entrar"
+    "pt": "Entrar",
+    "es": "Iniciar sesión"
   },
   "continueWithGoogle": {
     "en": "Continue with Google",
     "ja": "Googleで続行",
-    "pt": "Continuar com o Google"
+    "pt": "Continuar com o Google",
+    "es": "Continuar con Google"
   },
   "signout": {
     "en": "Sign Out",
     "ja": "サインアウト",
-    "pt": "Sair"
+    "pt": "Sair",
+    "es": "Cerrar sesión"
   },
   "emailRequired": {
     "en": "Email is required",
     "ja": "メールアドレスは必須です",
-    "pt": "O email é obrigatório"
+    "pt": "O email é obrigatório",
+    "es": "El correo electrónico es obligatorio"
   },
   "pwdRequired": {
     "en": "Password is required",
     "ja": "パスワードは必須です",
-    "pt": "A senha é obrigatória"
+    "pt": "A senha é obrigatória",
+    "es": "La contraseña es obligatoria"
   },
   "pleaseAgreeToTheTerms": {
     "en": "Pease agree to the terms",
     "ja": "利用規約に同意してください",
-    "pt": "Por favor, concorde com os termos"
+    "pt": "Por favor, concorde com os termos",
+    "es": "Por favor, acepte los términos"
   }
 }

@@ -5,7 +5,7 @@ export type Word = keyof typeof list;
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const userLanguage = navigator.language || navigator.userLanguage;
-const options = ["pt", "en", "ja"];
+const options = ["pt", "en", "ja", "es"];
 const _lang = userLanguage.split("-")[0];
 export const lang = options.includes(_lang) ? _lang : "en";
 

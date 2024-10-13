@@ -7,10 +7,12 @@ I followed the KISS protocol to keep the app simple and straightforward, avoidin
 ## Features
 
 - Support for `English`, `Japanese` and `Portuguese`, defaulting to the browser's language
+- Dark and light mode
 - Create, edit, and delete tasks
 - Real-time sync with Firebase
 - Data persistence to avoid fetching the data every time the app is opened
 - E2E tests with Cypress
+- [Design created and maintained by Komura Nanami](https://www.figma.com/design/jXI9zuus6HmDDCuDTbhx4A/Webapp?node-id=123-2088&node-type=canvas&t=Gys67KFOfeUe5De2-11)
 
 ## Dev
 
