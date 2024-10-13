@@ -1,5 +1,5 @@
 import { YodoCard, YodoProgress } from "@components";
-import { textContent, textContentEmphasis, textContentStrong } from "@consts";
+import { MOBILE_BREAKPOINT, textContent, textContentEmphasis, textContentStrong } from "@consts";
 import { useI18n, useTasks } from "@hooks";
 import { cx } from "@utils";
 import React, { useMemo } from "react";
@@ -10,10 +10,12 @@ const ReportCards: React.FC<Props> = () => {
   const { t } = useI18n();
   const tasks = useTasks();
 
+  const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
+
   const data = useMemo(() => tasks.getReportData(), [tasks.state.list]);
 
   return (
-    <div className={root}>
+    <div className={cx(root, isMobile && "flex-col")}>
       <YodoCard className="p-2 flex flex-col gap-4">
         <div className="flex gap-4">
           <div className={cx("text-3xl-bold", "text-amber-500")}>{data.created}</div>
@@ -25,7 +27,9 @@ const ReportCards: React.FC<Props> = () => {
 
         <div className="flex items-center gap-2">
           <div className="flex-grow flex-center flex-col gap-1">
-            <div className={cx("text-xs", textContent)}>{t("%s/%s until next cheer", 6, 10)}</div>
+            <div className={cx("text-xs", textContent)}>
+              {t("%s/%s until next cheer", data.cheersCent / 10, 10)}
+            </div>
             <YodoProgress variant="warning" value={data.cheersCent} max={100} />
           </div>
           <div className="text-[32px]">🤩</div>
@@ -56,7 +60,7 @@ const ReportCards: React.FC<Props> = () => {
   );
 };
 
-const root = cx("flex", "gap-4 flex-wrap");
+const root = cx("flex", "gap-4");
 
 ReportCards.displayName = "ReportCards";
 

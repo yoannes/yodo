@@ -5,6 +5,48 @@
     "pt": "",
     "es": ""
   },
+  "You’ve created 10 tasks!": {
+    "en": "You’ve created 10 tasks!",
+    "ja": "10個のタスクを作成しました！",
+    "pt": "Você criou 10 tarefas!",
+    "es": "¡Has creado 10 tareas!"
+  },
+  "You are strong!": {
+    "en": "You are strong!",
+    "ja": "あなたは強いです！",
+    "pt": "Você é forte!",
+    "es": "¡Eres fuerte!"
+  },
+  "You are on fire!": {
+    "en": "You are on fire!",
+    "ja": "あなたは火の中です！",
+    "pt": "Você está pegando fogo!",
+    "es": "¡Estás en llamas!"
+  },
+  "Let's dance!": {
+    "en": "Let's dance!",
+    "ja": "踊りましょう！",
+    "pt": "Vamos dançar!",
+    "es": "¡Bailemos!"
+  },
+  "Well done!": {
+    "en": "Well done!",
+    "ja": "よくやった！",
+    "pt": "Bem feito!",
+    "es": "¡Bien hecho!"
+  },
+  "Cheers!": {
+    "en": "Cheers!",
+    "ja": "乾杯！",
+    "pt": "Saúde!",
+    "es": "¡Salud!"
+  },
+  "I'm impressed": {
+    "en": "I'm impressed",
+    "ja": "感心しています",
+    "pt": "Estou impressionado",
+    "es": "Estoy impresionado"
+  },
   "completedTasks": {
     "en": "Completed Tasks",
     "ja": "完了したタスク",

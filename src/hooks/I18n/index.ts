@@ -1,5 +1,9 @@
+import dayjs from "dayjs";
+import en from "dayjs/locale/en";
+import es from "dayjs/locale/es";
+import ja from "dayjs/locale/ja";
+import pt from "dayjs/locale/pt-br";
 import list from "./words.json";
-
 export type Word = keyof typeof list;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -8,6 +12,18 @@ const userLanguage = navigator.language || navigator.userLanguage;
 const options = ["pt", "en", "ja", "es"];
 const _lang = userLanguage.split("-")[0];
 export const lang = options.includes(_lang) ? _lang : "en";
+
+function setLocale() {
+  if (lang === "en") {
+    dayjs.locale(en);
+  } else if (lang === "pt") {
+    dayjs.locale(pt);
+  } else if (lang === "ja") {
+    dayjs.locale(ja);
+  } else if (lang === "es") {
+    dayjs.locale(es);
+  }
+}
 
 export function useI18n() {
   function t(word: Word, ...replace: (string | number | undefined)[]): string {
@@ -36,3 +52,5 @@ export function useI18n() {
 
   return { t, lang };
 }
+
+setLocale();

@@ -14,6 +14,7 @@ interface Props {
   large?: boolean;
   busy?: boolean;
   okLabel?: Word;
+  placement?: "top" | "center";
   children?: React.ReactNode;
   preventClose?: boolean;
   onClose?: () => void;
@@ -30,6 +31,7 @@ const YodoModal: React.FC<Props> = ({
   large,
   okLabel,
   preventClose,
+  placement = "center",
   hideCancel,
   onClose,
   onOk,
@@ -46,7 +48,7 @@ const YodoModal: React.FC<Props> = ({
       }}
     >
       <DialogContent
-        placement="top"
+        placement={placement}
         className={cx(bgColor, large ? "w-[800px] max-w-[80vw]" : "max-w-sm")}
       >
         <div className="YodoModal overflow-x-hidden px-1 py-1">

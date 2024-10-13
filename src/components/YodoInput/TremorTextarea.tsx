@@ -1,6 +1,6 @@
 // Tremor Textarea [v0.0.2]
 
-import { focusInput, hasErrorInput } from "@consts";
+import { bgColor, borderColor, focusInput, hasErrorInput } from "@consts";
 import { cx } from "@utils";
 import React from "react";
 
@@ -19,9 +19,9 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           // text color
           "text-gray-900 dark:text-gray-50",
           // border color
-          "border-gray-300 dark:border-gray-800",
+          borderColor,
           // background color
-          "bg-white dark:bg-gray-950",
+          bgColor,
           // placeholder color
           "placeholder-gray-400 dark:placeholder-gray-500",
           // disabled

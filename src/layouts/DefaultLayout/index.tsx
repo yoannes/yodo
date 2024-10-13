@@ -1,19 +1,34 @@
-import { MOBILE_BREAKPOINT, bgBrandFaint, borderColor } from "@consts";
-import { useTasks } from "@hooks";
+import { YodoModal } from "@components";
+import { MOBILE_BREAKPOINT, bgBrandFaint, borderColor, textContentEmphasis } from "@consts";
+import { useI18n, useTasks } from "@hooks";
 import { LayoutProps } from "@layouts";
 import { DB, cx } from "@utils";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { MobileHeader, SideMenu } from "./components";
 
 const STORAGE_KEY = "sidebarWidth";
+const STORAGE_CHEERS = "cheers";
+const STORAGE_CHEERS_COUNT = "cheersCount";
 const MIN_WIDTH = 200;
 
 const DefaultLayout: React.FC<LayoutProps> = ({ children }) => {
+  const { t } = useI18n();
   const tasks = useTasks();
   const [sidebarWidth, setSidebarWidth] = useState(DB(STORAGE_KEY) || MIN_WIDTH);
+  const [showCheersModal, setShowCheersModal] = useState<string[] | null>(null);
   const resizerRef = useRef(0);
 
   const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
+
+  // TODO: Resize gifs, way too big
+  const cheers = [
+    ["/img/amazed.gif", t("I'm impressed")],
+    ["/img/cheers.gif", t("Cheers!")],
+    ["/img/clap.gif", t("Well done!")],
+    ["/img/dance.gif", t("Let's dance!")],
+    ["/img/fire.gif", t("You are on fire!")],
+    ["/img/muscle.gif", t("You are strong!")],
+  ];
 
   const data = useMemo(() => tasks.getReportData(), [tasks.state.list]);
 
@@ -39,14 +54,50 @@ const DefaultLayout: React.FC<LayoutProps> = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("ssssssss", data);
+    const count = DB(STORAGE_CHEERS_COUNT) || 0;
+    const current = DB(STORAGE_CHEERS);
+
+    if (count === 90 && !data.cheersCent) {
+      if (!current) {
+        const selectedCheer = cheers[Math.floor(Math.random() * cheers.length)];
+        DB(STORAGE_CHEERS, selectedCheer);
+        setShowCheersModal(selectedCheer);
+      }
+    } else {
+      // reset storage
+      DB(STORAGE_CHEERS, null);
+    }
+
+    DB(STORAGE_CHEERS_COUNT, data.cheersCent);
   }, [data]);
+
+  const CheersModal = (
+    <YodoModal
+      isOpen={!!showCheersModal}
+      hideFooter
+      onClose={() => {
+        DB(STORAGE_CHEERS, 1);
+        setShowCheersModal(null);
+      }}
+    >
+      {showCheersModal && (
+        <div className="flex-center gap-12 flex-col">
+          <div className={cx("flex flex-col items-center text-2xl-bold", textContentEmphasis)}>
+            <div>{t("You’ve created 10 tasks!")}</div>
+            <div>{showCheersModal[1]}</div>
+          </div>
+          <img src={showCheersModal[0]} className="w-[140px] h-[140px]" />
+        </div>
+      )}
+    </YodoModal>
+  );
 
   if (isMobile) {
     return (
       <div className={cx(root, "flex-col")}>
         <MobileHeader />
-        <div className="flex-1 overflow-y-auto flex justify-center">{children}</div>
+        <div className={body}>{children}</div>
+        {CheersModal}
       </div>
     );
   }
@@ -57,12 +108,11 @@ const DefaultLayout: React.FC<LayoutProps> = ({ children }) => {
         <SideMenu />
       </div>
       <div className={cx(resize, borderLeft)} onMouseDown={startResizing} />
-      <div
-        className="flex-1 flex justify-center"
-        style={{ width: `calc(100vw - ${sidebarWidth}px)` }}
-      >
+      <div className={body} style={{ width: `calc(100vw - ${sidebarWidth}px)` }}>
         {children}
       </div>
+
+      {CheersModal}
     </div>
   );
 };
@@ -70,6 +120,7 @@ const DefaultLayout: React.FC<LayoutProps> = ({ children }) => {
 const root = cx("flex", "h-screen", bgBrandFaint);
 const resize = cx("w-[5px]", "cursor-col-resize");
 const borderLeft = cx("border-l", borderColor);
+const body = cx("flex-1", "overflow-y-auto", "flex", "justify-center");
 
 DefaultLayout.displayName = "DefaultLayout";
 

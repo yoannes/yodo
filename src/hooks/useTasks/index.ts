@@ -18,11 +18,14 @@ export function useTasks() {
   const getReportData = useCallback(() => {
     const list = Object.values(tasks.list);
     const completed = list.filter((task) => task.completedAt).length;
-    const completedCent = (completed / list.length) * 100;
+    const completedCent = list.length ? (completed / list.length) * 100 : 0;
+    const cheersCent = ((list.length % 10) / 10) * 100;
+
+    console.log("->", cheersCent);
 
     return {
       created: list.length,
-      cheersCent: (list.length / 10) * 100,
+      cheersCent: cheersCent,
       completed,
       completedCent: Math.round(completedCent || 0),
     };

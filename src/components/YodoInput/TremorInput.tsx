@@ -1,6 +1,6 @@
 // Tremor Input [v1.0.5]
 
-import { focusInput, focusRing, hasErrorInput } from "@consts";
+import { bgColor, borderColor, focusInput, focusRing, hasErrorInput } from "@consts";
 import { RiEyeFill, RiEyeOffFill, RiSearchLine } from "@remixicon/react";
 import { cx } from "@utils";
 import React from "react";
@@ -11,13 +11,13 @@ const inputStyles = tv({
     // base
     "relative block w-full appearance-none rounded-md border px-2.5 py-2 shadow-sm outline-none transition sm:text-sm",
     // border color
-    "border-gray-300 dark:border-gray-800",
+    borderColor,
     // text color
     "text-gray-900 dark:text-gray-50",
     // placeholder color
     "placeholder-gray-400 dark:placeholder-gray-500",
     // background color
-    "bg-white dark:bg-gray-950",
+    bgColor,
     // disabled
     "disabled:border-gray-300 disabled:bg-gray-100 disabled:text-gray-400",
     "disabled:dark:border-gray-700 disabled:dark:bg-gray-800 disabled:dark:text-gray-500",
