@@ -5,6 +5,54 @@
     "pt": "",
     "es": ""
   },
+  "Since you started using Yodo!": {
+    "en": "Since you started using Yodo!",
+    "ja": "Yodoを使い始めてから！",
+    "pt": "Desde que você começou a usar o Yodo!",
+    "es": "¡Desde que empezaste a usar Yodo!"
+  },
+  "Tasks were created": {
+    "en": "Tasks were created",
+    "ja": "タスクが作成されました",
+    "pt": "Tarefas foram criadas",
+    "es": "Se crearon tareas"
+  },
+  "%s/%s until next cheer": {
+    "en": "%s/%s until next cheer",
+    "ja": "次のチアまであと%s/%s",
+    "pt": "%s/%s até o próximo cheer",
+    "es": "%s/%s hasta el próximo cheer"
+  },
+  "goodMorning": {
+    "en": "Good Morning",
+    "ja": "おはようございます",
+    "pt": "Bom dia",
+    "es": "Buenos días"
+  },
+  "goodAfternoon": {
+    "en": "Good Afternoon",
+    "ja": "こんにちは",
+    "pt": "Boa tarde",
+    "es": "Buenas tardes"
+  },
+  "goodEvening": {
+    "en": "Good Evening",
+    "ja": "こんばんは",
+    "pt": "Boa noite",
+    "es": "Buenas noches"
+  },
+  "goodNight": {
+    "en": "Good Night",
+    "ja": "こんばんは",
+    "pt": "Boa noite",
+    "es": "Buenas noches"
+  },
+  "greetingsUser": {
+    "en": "%s, <strong>%s</strong>",
+    "ja": "%s、<strong>%s</strong>",
+    "pt": "%s, <strong>%s</strong>",
+    "es": "%s, <strong>%s</strong>"
+  },
   "Signup or login into your account here": {
     "en": "Signup or login into your account here",
     "ja": "ここでアカウントにサインアップまたはログイン",

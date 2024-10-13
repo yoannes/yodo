@@ -34,6 +34,7 @@ export const bgColor = "bg-tremor-background dark:bg-dark-tremor-background";
 export const bgSubtle = "bg-tremor-background-subtle dark:bg-dark-tremor-background-subtle";
 export const bgBrandSubtle = "bg-tremor-brand-subtle dark:bg-dark-tremor-brand-subtle";
 export const bgBrandFaint = "bg-tremor-brand-faint dark:bg-dark-tremor-brand-faint";
+export const bgBrandMuted = "bg-tremor-brand-muted dark:bg-dark-tremor-brand-muted";
 export const bgGreenColor = "bg-green";
 export const bgRedColor = "bg-red";
 

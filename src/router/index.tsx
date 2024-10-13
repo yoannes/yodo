@@ -5,6 +5,7 @@ import List from "../pages/List";
 import Reports from "../pages/Reports";
 import LazyRoute from "./LazyRoute";
 
+// For smaller bundle, only Login is loaded lazily
 const Login = lazy(() => import("@pages/Login"));
 
 export type RouteName = keyof typeof routes;

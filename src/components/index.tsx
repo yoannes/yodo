@@ -1,5 +1,6 @@
 export { default as YodoAvatar } from "./YodoAvatar";
 export { default as YodoButton } from "./YodoButton";
+export { default as YodoCard } from "./YodoCard";
 export { default as YodoCheckbox } from "./YodoCheckbox";
 export { default as YodoDivider } from "./YodoDivider";
 export { default as YodoDropdown } from "./YodoDropdown";
@@ -8,4 +9,5 @@ export * from "./YodoIcon/types";
 export { default as YodoInput } from "./YodoInput";
 export { default as YodoLoading } from "./YodoLoading";
 export { default as YodoModal } from "./YodoModal";
+export { default as YodoProgress } from "./YodoProgress";
 export * from "./YodoToast";
