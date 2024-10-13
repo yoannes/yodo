@@ -1,18 +1,9 @@
 import { YodoButton, YodoDivider, YodoIcon, YodoInput } from "@components";
-import {
-  SECOND,
-  bgBrandSubtle,
-  textBrandEmphasis,
-  textContent,
-  textContentEmphasis,
-} from "@consts";
-import autoAnimate, { getTransitionSizes } from "@formkit/auto-animate";
+import { bgBrandSubtle, textBrandEmphasis, textContent, textContentEmphasis } from "@consts";
 import { useAuth, useI18n, useTasks } from "@hooks";
-import { DB, cx, debounce, logger } from "@utils";
+import { bouncyAnimation, cx } from "@utils";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ListItem } from "./components";
-
-const countKey = "count";
 
 export default function Home() {
   const { t } = useI18n();
@@ -20,7 +11,6 @@ export default function Home() {
   const tasks = useTasks();
   const [name, setName] = useState("");
   const [busy, setBusy] = useState(false);
-  const [count, setCount] = useState(DB(countKey) || { open: 0, completed: 0 });
   const listRef = useRef<HTMLDivElement>(null);
 
   // Get list of non-completed tasks
@@ -28,6 +18,13 @@ export default function Home() {
     return Object.values(tasks.state.list)
       .filter((item) => !item.completedAt)
       .sort((a, b) => (a.createdAt.isBefore(b.createdAt) ? 1 : -1));
+  }, [tasks.state.list]);
+
+  const count = useMemo(() => {
+    return {
+      open: list.length,
+      completed: Object.values(tasks.state.list).filter((item) => item.completedAt).length,
+    };
   }, [tasks.state.list]);
 
   const createTask = async () => {
@@ -42,70 +39,9 @@ export default function Home() {
 
   useEffect(() => {
     if (listRef.current) {
-      // Bouncy animation
-      autoAnimate(listRef.current, (el, action, oldCoords, newCoords) => {
-        let keyframes;
-        if (action === "add") {
-          keyframes = [
-            { transform: "scale(0)", opacity: 0 },
-            { transform: "scale(1.03)", opacity: 1, offset: 0.75 },
-            { transform: "scale(1)", opacity: 1 },
-          ];
-        }
-        if (action === "remove") {
-          keyframes = [
-            { transform: "scale(1)", opacity: 1 },
-            { transform: "scale(1.15)", opacity: 1, offset: 0.33 },
-            { transform: "scale(0.75)", opacity: 0.1, offset: 0.5 },
-            { transform: "scale(0.5)", opacity: 0 },
-          ];
-        }
-        if (action === "remain") {
-          const deltaX = (oldCoords?.left || 0) - (newCoords?.left || 0);
-          const deltaY = (oldCoords?.top || 0) - (newCoords?.top || 0);
-          const [widthFrom, widthTo, heightFrom, heightTo] = getTransitionSizes(
-            el,
-            oldCoords!,
-            newCoords!,
-          );
-          const start: Keyframe = {
-            transform: `translate(${deltaX}px, ${deltaY}px)`,
-          };
-          const mid: Keyframe = {
-            transform: `translate(${deltaX * -0.15}px, ${deltaY * -0.15}px)`,
-            offset: 0.75,
-          };
-          const end: Keyframe = { transform: `translate(0, 0)` };
-          if (widthFrom !== widthTo) {
-            start.width = `${widthFrom}px`;
-            mid.width = `${widthFrom >= widthTo ? widthTo / 1.05 : widthTo * 1.05}px`;
-            end.width = `${widthTo}px`;
-          }
-          if (heightFrom !== heightTo) {
-            start.height = `${heightFrom}px`;
-            mid.height = `${heightFrom >= heightTo ? heightTo / 1.05 : heightTo * 1.05}px`;
-            end.height = `${heightTo}px`;
-          }
-          keyframes = [start, mid, end];
-        }
-        return new KeyframeEffect(el, keyframes as Keyframe[], {
-          duration: 600,
-          easing: "ease-out",
-        });
-      });
+      bouncyAnimation(listRef.current);
     }
   }, [listRef]);
-
-  // Update count every time the list changes
-  useEffect(() => {
-    debounce(() => {
-      tasks.getCount().then((res) => {
-        logger("update count", res);
-        setCount(res as { open: number; completed: number });
-        DB(countKey, res);
-      });
-    }, SECOND);
-  }, [list.length]);
 
   return (
     <div className={root}>

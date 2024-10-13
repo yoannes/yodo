@@ -1,3 +1,4 @@
+export * from "./bouncyAnimation";
 export * from "./chartUtils";
 export * from "./cx";
 export * from "./db";

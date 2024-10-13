@@ -5,6 +5,7 @@ import {
   firebaseSigninGoogle,
   firebaseSignup,
 } from "@utils/firebase";
+import localforage from "localforage";
 import { useMemo } from "react";
 import { useAppState } from "../../context/AppStateHooks";
 
@@ -25,7 +26,11 @@ export function useAuth() {
 
   const signout = async () => {
     logger("signout");
-    return firebaseLogout();
+    const res = await firebaseLogout();
+
+    await localforage.clear();
+
+    return res;
   };
 
   return useMemo(

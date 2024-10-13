@@ -1,4 +1,5 @@
 import { Collections } from "@consts";
+import { setLocalData } from "@context/helpers";
 import { TaskCollection } from "@types";
 import {
   firebaseAdd,
@@ -8,10 +9,11 @@ import {
   firebaseUpdate,
 } from "@utils";
 import { useMemo } from "react";
-import { useAppState } from "../../context/AppStateHooks";
+import { useAppDispatch, useAppState } from "../../context/AppStateHooks";
 
 export function useTasks() {
   const { tasks, auth } = useAppState();
+  const { setTasks } = useAppDispatch();
 
   const add = async (title: string) => {
     if (!auth.user || !title) return;
@@ -45,6 +47,14 @@ export function useTasks() {
     try {
       const collection = `${Collections.Users}/${auth.user.id}/${Collections.Tasks}`;
       await firebaseDelete(collection, id);
+
+      setTasks((prev) => {
+        const { [id]: _, ...rest } = prev.list;
+        const newState = { ...prev, list: rest };
+        if (auth.user) setLocalData(auth.user.id, newState);
+        return newState;
+      });
+
       return true;
     } catch (error) {
       return false;

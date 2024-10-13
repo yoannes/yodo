@@ -16,6 +16,8 @@
     "formkit",
     "fullname",
     "headlessui",
+    "INDEXEDDB",
+    "localforage",
     "remixicon",
     "Signin",
     "signout",

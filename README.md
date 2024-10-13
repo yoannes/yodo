@@ -9,7 +9,7 @@ I followed the KISS protocol to keep the app simple and straightforward, avoidin
 - Support for `English`, `Japanese` and `Portuguese`, defaulting to the browser's language
 - Create, edit, and delete tasks
 - Real-time sync with Firebase
-- Minimalist UI
+- Data persistence to avoid fetching the data every time the app is opened
 - E2E tests with Cypress
 
 ## Dev

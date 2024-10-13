@@ -9,9 +9,11 @@ import {
   mapCollectionToTask,
 } from "@utils";
 import dayjs from "dayjs";
+import { Unsubscribe } from "firebase/auth";
+import localforage from "localforage";
 import type React from "react";
-import { createContext, useEffect, useState } from "react";
-import { createUserIfNotExists } from "./helpers";
+import { createContext, useCallback, useEffect, useState } from "react";
+import { createUserIfNotExists, loadLocalData, setLocalData, syncLocalData } from "./helpers";
 
 const initialState: AppState = {
   auth: {
@@ -25,6 +27,7 @@ const initialState: AppState = {
 };
 
 let started = false;
+let listenSub: Unsubscribe;
 
 export const AppStateContext = createContext<AppState>(initialState);
 export const AppDispatchContext = createContext<{
@@ -39,34 +42,57 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [auth, setAuth] = useState<AuthState>(initialState.auth);
   const [tasks, setTasks] = useState<TaskState>(initialState.tasks);
 
-  const setDefaultListeners = (userId: string) => {
-    firebaseListenToDocChanges({
-      collectionName: `${Collections.Users}/${userId}/${Collections.Tasks}`,
-      orderBy: "createdAt",
-      orderByDirection: "desc",
-      limit: 10,
-      callback(changes) {
-        logger("changes", changes);
+  // We listen to doc changes from firestore, to avoid unnecessary reads we only
+  // listen to changes that are newer than the newest task in the local storage
+  const setDefaultListeners = useCallback(
+    async (userId: string) => {
+      listenSub?.();
 
-        if (changes.type === "removed") {
-          setTasks((prev) => {
-            const { [changes.doc.id]: _, ...rest } = prev.list;
-            return { ...prev, list: rest };
-          });
-        } else {
-          const id = changes.doc.id;
-          const data = changes.doc.data() as TaskCollection;
+      // if no userId, just cancel the listener
+      if (!userId) return;
 
-          setTasks((prev) => {
-            return {
-              ...prev,
-              list: { ...prev.list, [id]: mapCollectionToTask(id, data) },
-            };
-          });
+      let newest = dayjs().unix();
+      const data = await loadLocalData(userId);
+      if (data?.list) {
+        const _newest = Object.values(data.list).sort(
+          (a, b) => b.updatedAt.unix() - a.updatedAt.unix(),
+        )[0];
+        if (_newest) {
+          newest = _newest.updatedAt.unix();
         }
-      },
-    });
-  };
+
+        await syncLocalData(setTasks, userId, data);
+      }
+
+      listenSub = firebaseListenToDocChanges({
+        collectionName: `${Collections.Users}/${userId}/${Collections.Tasks}`,
+        orderBy: "updatedAt",
+        orderByDirection: "desc",
+        where: { fieldPath: "updatedAt", opStr: ">", value: newest },
+        limit: 1,
+        callback(changes) {
+          logger("changes", changes);
+
+          if (changes.type !== "removed") {
+            const id = changes.doc.id;
+            const data = changes.doc.data() as TaskCollection;
+
+            setTasks((prev) => {
+              const newState = {
+                ...prev,
+                list: { ...prev.list, [id]: mapCollectionToTask(id, data) },
+              };
+
+              setLocalData(userId, newState);
+
+              return newState;
+            });
+          }
+        },
+      });
+    },
+    [setTasks],
+  );
 
   // This function is called when the user logs in or logs out
   const authChanged = async (authUser: AuthUser | null) => {
@@ -85,12 +111,16 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
           authUser,
           ready: true,
         });
-        setDefaultListeners(user.id);
       }
     } else {
       setAuth({ user: null, authUser: null, ready: true });
+      localforage.clear();
     }
   };
+
+  useEffect(() => {
+    setDefaultListeners(auth.user?.id || "");
+  }, [setDefaultListeners, auth.user?.id]);
 
   useEffect(() => {
     if (started) return;
