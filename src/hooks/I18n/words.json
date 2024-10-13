@@ -5,6 +5,12 @@
     "pt": "",
     "es": ""
   },
+  "Title is required": {
+    "en": "Title is required",
+    "ja": "タイトルは必須です",
+    "pt": "O título é obrigatório",
+    "es": "El título es obligatorio"
+  },
   "You’ve created 10 tasks!": {
     "en": "You’ve created 10 tasks!",
     "ja": "10個のタスクを作成しました！",

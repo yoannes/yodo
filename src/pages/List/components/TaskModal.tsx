@@ -12,6 +12,7 @@ const CreateTask: React.FC<Props> = () => {
   const tasks = useTasks();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [noTitleErr, setNoTitleErr] = useState(false);
   const [busy, setBusy] = useState(false);
   const [typing, setTyping] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -26,7 +27,14 @@ const CreateTask: React.FC<Props> = () => {
   }, [tasks.state.list, nav.currentRoute.params?.id]);
 
   const createTask = async () => {
-    if (currentTask && !title) return;
+    setNoTitleErr(false);
+
+    if (currentTask) return;
+    if (!title) {
+      setNoTitleErr(true);
+      titleRef.current?.focus();
+      return;
+    }
 
     setBusy(true);
     await tasks.add(title, description);
@@ -76,6 +84,7 @@ const CreateTask: React.FC<Props> = () => {
           value={title}
           label={t("taskTitle")}
           placeholder={t("Try to take over the world")}
+          errorMessage={noTitleErr ? t("Title is required") : undefined}
           onChange={(v) => {
             const value = v as string;
             setTitle(value);
