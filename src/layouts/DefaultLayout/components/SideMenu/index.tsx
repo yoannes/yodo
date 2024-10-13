@@ -14,7 +14,7 @@ const SideMenu: React.FC = () => {
 
   const actionHandler = (v: string) => {
     if (v === "theme") {
-      theme.setTheme(theme.theme === "dark" ? "light" : "dark");
+      theme.setTheme(theme.currentTheme === "dark" ? "light" : "dark");
     } else if (v === "signout") {
       auth.signout();
     } else {
@@ -49,9 +49,10 @@ const SideMenu: React.FC = () => {
           <YodoAvatar url={auth.state.user.avatar} size={32} name={auth.state.user.firstName} />
           <div className="flex-grow">{auth.state.user.firstName}</div>
           <YodoDropdown
+            className="UserDropdown"
             items={[
               {
-                label: t(theme.theme as Word),
+                label: t(theme.currentTheme as Word),
                 value: "theme",
                 children: (
                   <YodoIcon type={theme.currentTheme === "dark" ? "moon" : "sun"} size={16} />

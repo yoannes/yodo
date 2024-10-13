@@ -15,6 +15,7 @@
     "prebuild": "tsx ./src/scripts/prebuild.ts",
     "translations": "tsx ./src/scripts/check-unused-translations.ts",
     "preview": "vite preview",
+    "cypress:e2e": "cypress open --e2e --browser chrome",
     "kill-emulator": "npx kill-port 9099 5010 9199 8090 8091 8080 5001",
     "prepare": "husky"
   },
@@ -48,6 +49,8 @@
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
     "cspell": "^8.15.1",
+    "cypress": "^13.15.0",
+    "dotenv": "^16.4.5",
     "glob": "^11.0.0",
     "globals": "^15.11.0",
     "husky": "^9.1.6",

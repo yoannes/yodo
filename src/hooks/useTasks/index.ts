@@ -21,8 +21,6 @@ export function useTasks() {
     const completedCent = list.length ? (completed / list.length) * 100 : 0;
     const cheersCent = ((list.length % 10) / 10) * 100;
 
-    console.log("->", cheersCent);
-
     return {
       created: list.length,
       cheersCent: cheersCent,

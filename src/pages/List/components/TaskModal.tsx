@@ -85,7 +85,7 @@ const CreateTask: React.FC<Props> = () => {
         <YodoInput
           value={description}
           label={t("taskDescription")}
-          placeholder={t("Some how we will take over the world")}
+          placeholder={t("Somehow we will take over the world")}
           type="textarea"
           onChange={(v) => {
             const value = v as string;

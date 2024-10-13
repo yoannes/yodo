@@ -43,7 +43,13 @@ const YodoIcon: React.FC<Props> = memo(
           height: height || size,
           ...(style || {}),
         }}
-        className={cx("YodoIcon", className, pointer && "cursor-pointer", spin && "animate-spin")}
+        className={cx(
+          "YodoIcon",
+          type,
+          className,
+          pointer && "cursor-pointer",
+          spin && "animate-spin",
+        )}
         dangerouslySetInnerHTML={{ __html: svgContent }}
         onClick={onClick}
       />

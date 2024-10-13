@@ -23,6 +23,7 @@ interface Props {
   items?: Item[];
   html?: React.ReactNode;
   fullWidth?: boolean;
+  className?: string;
   onClick?: (value: string) => void;
   onVisibilityChange?: (value: boolean) => void;
   children: React.ReactNode;
@@ -34,6 +35,7 @@ const YodoDropdown: React.FC<Props> = ({
   children,
   html,
   fullWidth,
+  className,
   onClick,
   onVisibilityChange,
 }) => {
@@ -43,7 +45,7 @@ const YodoDropdown: React.FC<Props> = ({
 
   return (
     <DropdownMenu open={open} modal onOpenChange={onVisibilityChange}>
-      <DropdownMenuTrigger className={cx(fullWidth ? "w-full" : "w-fit")}>
+      <DropdownMenuTrigger className={cx(fullWidth ? "w-full" : "w-fit", className)}>
         {children}
       </DropdownMenuTrigger>
 

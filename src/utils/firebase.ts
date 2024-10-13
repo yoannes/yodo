@@ -37,7 +37,6 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { connectFunctionsEmulator, getFunctions } from "firebase/functions";
 import { logger } from "./logger";
 
 type FirebaseOptionsWhere = {
@@ -78,12 +77,10 @@ const firebaseConfig = import.meta.env.VITE_FIREBASE || "{}";
 const app = initializeApp(JSON.parse(firebaseConfig));
 const auth = getAuth(app);
 const db = getFirestore(app);
-const fn = getFunctions(app);
 
 if (window.location.hostname === "localhost") {
   connectAuthEmulator(auth, "http://localhost:9099");
   connectFirestoreEmulator(db, "localhost", 8090);
-  connectFunctionsEmulator(fn, "localhost", 5001);
 }
 
 /**
