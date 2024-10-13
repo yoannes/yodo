@@ -2,7 +2,68 @@
   "": {
     "en": "",
     "ja": "",
-    "pt": ""
+    "pt": "",
+    "es": ""
+  },
+  "You completed all your tasks. Proud of you!": {
+    "en": "You completed all your tasks. Proud of you!",
+    "ja": "すべてのタスクが完了しました。あなたに誇りです！",
+    "pt": "Você concluiu todas as suas tarefas. Orgulho de você!",
+    "es": "Completaste todas tus tareas. ¡Orgulloso de ti!"
+  },
+  "Keep it up!": {
+    "en": "Keep it up!",
+    "ja": "その調子！",
+    "pt": "Continue assim!",
+    "es": "¡Sigue así!"
+  },
+  "You're doing great!": {
+    "en": "You're doing great!",
+    "ja": "素晴らしいです！",
+    "pt": "Você está indo muito bem!",
+    "es": "¡Lo estás haciendo genial!"
+  },
+  "You're on fire!": {
+    "en": "You're on fire!",
+    "ja": "あなたは火の中です！",
+    "pt": "Você está pegando fogo!",
+    "es": "¡Estás en llamas!"
+  },
+  "You're unstoppable!": {
+    "en": "You're unstoppable!",
+    "ja": "あなたは止められません！",
+    "pt": "Você é imparável!",
+    "es": "¡Eres imparable!"
+  },
+  "Fantastic": {
+    "en": "Fantastic",
+    "ja": "素晴らしい",
+    "pt": "Fantástico",
+    "es": "Fantástico"
+  },
+  "Awesome": {
+    "en": "Awesome",
+    "ja": "素晴らしい",
+    "pt": "Impressionante",
+    "es": "Impresionante"
+  },
+  "Great job": {
+    "en": "Great job",
+    "ja": "素晴らしい仕事",
+    "pt": "Ótimo trabalho",
+    "es": "Gran trabajo"
+  },
+  "Well done": {
+    "en": "Well done",
+    "ja": "よくやった",
+    "pt": "Bem feito",
+    "es": "Bien hecho"
+  },
+  "Congrats": {
+    "en": "Congrats",
+    "ja": "おめでとう",
+    "pt": "Parabéns",
+    "es": "Felicidades"
   },
   "taskCompleted": {
     "en": "Task <strong>%s</strong> completed",

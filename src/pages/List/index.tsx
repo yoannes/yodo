@@ -1,17 +1,30 @@
-import { YodoButton, YodoDivider, YodoIcon, YodoInput } from "@components";
-import { bgBrandSubtle, textBrandEmphasis, textContent, textContentEmphasis } from "@consts";
+import { YodoButton, YodoDivider, YodoInput } from "@components";
+import { bgBrandSubtle, textContent, textContentEmphasis } from "@consts";
 import { useAuth, useI18n, useTasks } from "@hooks";
 import { bouncyAnimation, cx } from "@utils";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ListItem } from "./components";
 
 export default function Home() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const auth = useAuth();
   const tasks = useTasks();
   const [name, setName] = useState("");
   const [busy, setBusy] = useState(false);
+  const [congratsPhrase, setCongratsPhrase] = useState(-1);
+  const [listLength, setListLength] = useState(-1);
   const listRef = useRef<HTMLDivElement>(null);
+
+  const congratsPhrases = useMemo(
+    () => [
+      [t("Congrats"), t("You completed all your tasks. Proud of you!")],
+      [t("Well done"), t("Keep it up!")],
+      [t("Great job"), t("You're doing great!")],
+      [t("Awesome"), t("You're on fire!")],
+      [t("Fantastic"), t("You're unstoppable!")],
+    ],
+    [lang],
+  );
 
   // Get list of non-completed tasks
   const list = useMemo(() => {
@@ -36,6 +49,15 @@ export default function Home() {
 
     setName("");
   };
+
+  useEffect(() => {
+    if (!list.length && listLength === -1) return;
+    setListLength(list.length);
+
+    if (!list.length) {
+      setCongratsPhrase(Math.floor(Math.random() * congratsPhrases.length));
+    }
+  }, [list.length]);
 
   useEffect(() => {
     if (listRef.current) {
@@ -85,14 +107,33 @@ export default function Home() {
 
         {!list.length && (
           <div className={cx("py-16", "px-6", emptyStateContainer)}>
-            <YodoIcon type="file-text" className={textBrandEmphasis} size={56} />
+            {congratsPhrase > -1 ? (
+              <>
+                <span className="text-[48px]">🎉</span>
 
-            <div className="text-center">
-              <div className={cx("text-bold", textContent)}>{t("You don't have any tasks")}</div>
-              <div className={cx("text-title", textContent)}>
-                {t("Create tasks and organize your to-do items")}
-              </div>
-            </div>
+                <div className="text-center">
+                  <div className={cx("text-bold", textContent)}>
+                    {congratsPhrases[congratsPhrase][0]}
+                  </div>
+                  <div className={cx("text-title", textContent)}>
+                    {congratsPhrases[congratsPhrase][1]}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <span className="text-[48px]">🧐</span>
+
+                <div className="text-center">
+                  <div className={cx("text-bold", textContent)}>
+                    {t("You don't have any tasks")}
+                  </div>
+                  <div className={cx("text-title", textContent)}>
+                    {t("Create tasks and organize your to-do items")}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>
