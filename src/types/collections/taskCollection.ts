@@ -2,6 +2,7 @@ import { Dayjs } from "dayjs";
 
 // Common fields between TaskCollection and Task
 type TaskCommon = {
+  deleted: null | { at: number };
   title: string;
   description: string;
 };

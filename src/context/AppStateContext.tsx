@@ -68,15 +68,15 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         collectionName: `${Collections.Users}/${userId}/${Collections.Tasks}`,
         orderBy: "updatedAt",
         orderByDirection: "desc",
-        where: { fieldPath: "updatedAt", opStr: ">", value: newest },
+        where: { fieldPath: "updatedAt", opStr: ">=", value: newest },
+        fetchDeleted: true,
         limit: 1,
         callback(changes) {
-          logger("changes", changes);
+          const id = changes.doc.id;
+          const data = changes.doc.data() as TaskCollection;
+          logger("changes", changes, data);
 
-          if (changes.type !== "removed") {
-            const id = changes.doc.id;
-            const data = changes.doc.data() as TaskCollection;
-
+          if (changes.type !== "removed" && !data.deleted) {
             setTasks((prev) => {
               const newState = {
                 ...prev,
@@ -85,6 +85,13 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
               setLocalData(userId, newState);
 
+              return newState;
+            });
+          } else if (data.deleted) {
+            setTasks((prev) => {
+              const { [id]: _, ...rest } = prev.list;
+              const newState = { ...prev, list: rest };
+              if (auth.user) setLocalData(auth.user.id, newState);
               return newState;
             });
           }
