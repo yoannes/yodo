@@ -1,17 +1,21 @@
 import { MOBILE_BREAKPOINT, bgBrandFaint, borderColor } from "@consts";
+import { useTasks } from "@hooks";
 import { LayoutProps } from "@layouts";
 import { DB, cx } from "@utils";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { MobileHeader, SideMenu } from "./components";
 
 const STORAGE_KEY = "sidebarWidth";
 const MIN_WIDTH = 200;
 
 const DefaultLayout: React.FC<LayoutProps> = ({ children }) => {
+  const tasks = useTasks();
   const [sidebarWidth, setSidebarWidth] = useState(DB(STORAGE_KEY) || MIN_WIDTH);
   const resizerRef = useRef(0);
 
   const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
+
+  const data = useMemo(() => tasks.getReportData(), [tasks.state.list]);
 
   const startResizing = (e: React.MouseEvent) => {
     resizerRef.current = e.clientX;
@@ -34,11 +38,15 @@ const DefaultLayout: React.FC<LayoutProps> = ({ children }) => {
     document.removeEventListener("mouseup", stopResizing);
   };
 
+  useEffect(() => {
+    console.log("ssssssss", data);
+  }, [data]);
+
   if (isMobile) {
     return (
       <div className={cx(root, "flex-col")}>
         <MobileHeader />
-        <div className="flex-1 flex justify-center">{children}</div>
+        <div className="flex-1 overflow-y-auto flex justify-center">{children}</div>
       </div>
     );
   }

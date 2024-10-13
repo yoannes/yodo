@@ -5,6 +5,30 @@
     "pt": "",
     "es": ""
   },
+  "completedTasks": {
+    "en": "Completed Tasks",
+    "ja": "完了したタスク",
+    "pt": "Tarefas Concluídas",
+    "es": "Tareas Completadas"
+  },
+  "completedAt": {
+    "en": "Completed at %s",
+    "ja": "%sに完了",
+    "pt": "Concluído em %s",
+    "es": "Completado en %s"
+  },
+  "tasks": {
+    "en": "Tasks",
+    "ja": "タスク",
+    "pt": "Tarefas",
+    "es": "Tareas"
+  },
+  "of your tasks are completed": {
+    "en": "of your tasks are completed",
+    "ja": "のタスクが完了しました",
+    "pt": "de suas tarefas estão concluídas",
+    "es": "de tus tareas están completadas"
+  },
   "Since you started using Yodo!": {
     "en": "Since you started using Yodo!",
     "ja": "Yodoを使い始めてから！",

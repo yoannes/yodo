@@ -1,9 +1,9 @@
-import { YodoButton, YodoDivider } from "@components";
+import { YodoButton, YodoDivider, YodoListItem } from "@components";
 import { MOBILE_BREAKPOINT, bgBrandSubtle, textContent, textContentEmphasis } from "@consts";
 import { useAuth, useI18n, useNavigator, useTasks } from "@hooks";
 import { bouncyAnimation, cx } from "@utils";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ListItem, TaskModal } from "./components";
+import { TaskModal } from "./components";
 
 export default function Home() {
   const nav = useNavigator();
@@ -79,7 +79,7 @@ export default function Home() {
 
         <div ref={listRef} className="flex flex-col gap-3">
           {list.map((item) => (
-            <ListItem key={item.id} task={item} />
+            <YodoListItem key={item.id} task={item} />
           ))}
         </div>
 

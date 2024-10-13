@@ -8,12 +8,25 @@ import {
   firebaseUndelete,
   firebaseUpdate,
 } from "@utils";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useAppDispatch, useAppState } from "../../context/AppStateHooks";
 
 export function useTasks() {
   const { tasks, auth } = useAppState();
   const { setTasks } = useAppDispatch();
+
+  const getReportData = useCallback(() => {
+    const list = Object.values(tasks.list);
+    const completed = list.filter((task) => task.completedAt).length;
+    const completedCent = (completed / list.length) * 100;
+
+    return {
+      created: list.length,
+      cheersCent: (list.length / 10) * 100,
+      completed,
+      completedCent: Math.round(completedCent || 0),
+    };
+  }, [tasks.list]);
 
   const add = async (title: string, description: string) => {
     if (!auth.user || !title) return;
@@ -105,7 +118,8 @@ export function useTasks() {
       del,
       unDel,
       getCount,
+      getReportData,
     }),
-    [tasks],
+    [tasks, getReportData],
   );
 }

@@ -1,12 +1,15 @@
+import { MOBILE_BREAKPOINT } from "@consts";
 import { useAuth, useI18n } from "@hooks";
 import { cx } from "@utils";
 import dayjs from "dayjs";
 import { useMemo } from "react";
-import { ReportCards } from "./components";
+import { CompletedTasks, ReportCards } from "./components";
 
 export default function Reports() {
   const { t } = useI18n();
   const auth = useAuth();
+
+  const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
 
   const greetings = useMemo(() => {
     const now = dayjs();
@@ -19,7 +22,7 @@ export default function Reports() {
   if (!auth.me) return null;
 
   return (
-    <div className={root}>
+    <div className={cx(root, isMobile ? "py-12 px-8" : "p-8")}>
       <div
         className={header}
         dangerouslySetInnerHTML={{
@@ -27,12 +30,16 @@ export default function Reports() {
         }}
       />
 
-      <div className="mt-6">
+      <div className={isMobile ? "mt-12" : "mt-6"}>
         <ReportCards />
+      </div>
+
+      <div className="mt-12">
+        <CompletedTasks />
       </div>
     </div>
   );
 }
 
-const root = cx("p-8", "max-w-[1014px]", "w-full");
+const root = cx("max-w-[1014px]", "w-full", "h-fit");
 const header = cx("text-2xl-bold", "text-center");

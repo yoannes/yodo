@@ -1,5 +1,5 @@
 import { YodoIcon } from "@components";
-import { SECOND, bgColor, borderColor } from "@consts";
+import { SECOND, bgColor, borderColor, textContent } from "@consts";
 import { Toast, useI18n, useNavigator, useTasks, useToast } from "@hooks";
 import { Task } from "@types";
 import { cx } from "@utils";
@@ -10,7 +10,7 @@ interface Props {
   task: Task;
 }
 
-const ListItem: React.FC<Props> = ({ task }) => {
+const YodoListItem: React.FC<Props> = ({ task }) => {
   const nav = useNavigator();
   const { t } = useI18n();
   const { toast } = useToast();
@@ -19,10 +19,14 @@ const ListItem: React.FC<Props> = ({ task }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const editHandler = () => {
+    if (task.completedAt) return;
+
     nav.push({ name: "editItem", params: { id: task.id } });
   };
 
   const completeHandler = async () => {
+    if (task.completedAt) return;
+
     const res = await tasks.edit(task.id, { completedAt: dayjs().unix() });
     const options: Toast = {
       title: t("task"),
@@ -93,10 +97,18 @@ const ListItem: React.FC<Props> = ({ task }) => {
   return (
     <div className={root}>
       <div className="h-[72px] flex items-center gap-3">
-        <YodoIcon type="check" size={24} pointer onClick={completeHandler} />
+        <YodoIcon
+          type={task.completedAt ? "checked" : "check"}
+          size={24}
+          pointer={!task.completedAt}
+          onClick={completeHandler}
+        />
 
         <div className="flex-grow">
-          <span className="cursor-pointer" onClick={editHandler}>
+          <span
+            className={cx(task.completedAt ? "line-through " + textContent : "cursor-pointer")}
+            onClick={editHandler}
+          >
             {task.title}
           </span>
         </div>
@@ -109,6 +121,6 @@ const ListItem: React.FC<Props> = ({ task }) => {
 
 const root = cx("px-4 py-2 rounded-md", borderColor, bgColor);
 
-ListItem.displayName = "ListItem";
+YodoListItem.displayName = "YodoListItem";
 
-export default ListItem;
+export default YodoListItem;
