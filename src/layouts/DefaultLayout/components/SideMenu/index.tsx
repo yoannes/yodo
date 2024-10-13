@@ -1,5 +1,5 @@
-import { type IconType, YodoAvatar, YodoDropdown, YodoIcon } from "@components";
-import { borderColor } from "@consts";
+import { YodoAvatar, YodoDropdown, YodoIcon } from "@components";
+import { borderColor, menuItems } from "@consts";
 import { type Word, useAuth, useI18n, useNavigator, useTheme } from "@hooks";
 import type { RouteName } from "@router";
 import { cx } from "@utils";
@@ -11,11 +11,6 @@ const SideMenu: React.FC = () => {
   const theme = useTheme();
   const auth = useAuth();
   const nav = useNavigator();
-
-  const menuItems: { icon: IconType; value: string }[] = [
-    { icon: "list", value: "list" },
-    { icon: "activity", value: "reports" },
-  ];
 
   const actionHandler = (v: string) => {
     if (v === "theme") {
@@ -38,7 +33,7 @@ const SideMenu: React.FC = () => {
         onClick={() => actionHandler("home")}
         onKeyUp={() => actionHandler("home")}
       >
-        Yodo!
+        <YodoIcon type="logo" width={77} height={32} />
       </div>
 
       <div className={itemsContainer}>
@@ -58,7 +53,9 @@ const SideMenu: React.FC = () => {
               {
                 label: t(theme.theme as Word),
                 value: "theme",
-                children: <YodoIcon type={theme.theme === "dark" ? "moon" : "sun"} size={16} />,
+                children: (
+                  <YodoIcon type={theme.currentTheme === "dark" ? "moon" : "sun"} size={16} />
+                ),
               },
               { label: t("signout"), value: "signout" },
             ]}

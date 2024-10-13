@@ -1,5 +1,5 @@
 import { YodoButton, YodoDivider } from "@components";
-import { bgBrandSubtle, textContent, textContentEmphasis } from "@consts";
+import { MOBILE_BREAKPOINT, bgBrandSubtle, textContent, textContentEmphasis } from "@consts";
 import { useAuth, useI18n, useNavigator, useTasks } from "@hooks";
 import { bouncyAnimation, cx } from "@utils";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -12,8 +12,9 @@ export default function Home() {
   const tasks = useTasks();
   const [congratsPhrase, setCongratsPhrase] = useState(-1);
   const [listLength, setListLength] = useState(-1);
-
   const listRef = useRef<HTMLDivElement>(null);
+
+  const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
 
   const congratsPhrases = useMemo(
     () => [
@@ -64,7 +65,7 @@ export default function Home() {
         }}
       />
 
-      <div className="flex justify-between items-center gap-2 mt-6">
+      <div className={subHeader}>
         <div className="text-bold text-cyan-500">
           {t("todos")} <span className={badge}>{count.open}</span>
         </div>
@@ -74,7 +75,7 @@ export default function Home() {
       </div>
 
       <div>
-        <YodoDivider />
+        <YodoDivider className={cx(isMobile && "mt-4")} />
 
         <div ref={listRef} className="flex flex-col gap-3">
           {list.map((item) => (
@@ -120,7 +121,8 @@ export default function Home() {
   );
 }
 
-const root = cx("p-8", "w-[1014px]");
+const root = cx("px-8", "py-12", "max-w-[1014px]", "w-full");
 const header = cx("text-2xl-bold", "text-center");
+const subHeader = cx("flex", "justify-between", "items-end", "gap-2", "mt-12");
 const badge = cx("rounded-full", "px-2", "py-[2px]", bgBrandSubtle, textContentEmphasis);
 const emptyStateContainer = cx("flex-center", "flex-col", "gap-4");

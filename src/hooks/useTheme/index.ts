@@ -9,6 +9,7 @@ export function useTheme() {
       theme,
       setTheme,
       systemTheme,
+      currentTheme: theme === "system" ? systemTheme : theme,
     };
   }, [setTheme, theme]);
 }

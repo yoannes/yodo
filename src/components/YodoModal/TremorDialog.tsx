@@ -45,9 +45,14 @@ const DialogOverlay = React.forwardRef<
 
 DialogOverlay.displayName = "DialogOverlay";
 
+interface DialogContentProps
+  extends React.ComponentPropsWithoutRef<typeof DialogPrimitives.Content> {
+  placement?: "top" | "center";
+}
+
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitives.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitives.Content>
+  DialogContentProps
 >(({ className, ...props }, forwardedRef) => {
   return (
     <DialogPortal>
@@ -56,7 +61,9 @@ const DialogContent = React.forwardRef<
           ref={forwardedRef}
           className={cx(
             // base
-            "fixed left-1/2 top-1/2 z-50 w-[95vw] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-md border p-6 shadow-lg",
+            "fixed z-50 w-[95vw] max-w-lg overflow-y-auto rounded-md border p-6 shadow-lg",
+            props.placement === "top" && "left-1/2 top-4 -translate-x-1/2",
+            props.placement === "center" && "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
             // border color
             "border-gray-200 dark:border-gray-900",
             // background color

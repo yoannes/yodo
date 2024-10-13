@@ -1,4 +1,5 @@
 import { YodoButton, YodoIcon } from "@components";
+import { bgColor, textContentSubtle } from "@consts";
 import { Word, useI18n } from "@hooks";
 import { cx } from "@utils";
 import React from "react";
@@ -6,7 +7,7 @@ import { Dialog, DialogContent, DialogTitle } from "./TremorDialog";
 
 interface Props {
   isOpen: boolean;
-  title?: string;
+  title?: React.ReactNode;
   closable?: boolean;
   hideFooter?: boolean;
   hideCancel?: boolean;
@@ -44,10 +45,13 @@ const YodoModal: React.FC<Props> = ({
         }
       }}
     >
-      <DialogContent className={cx(large ? "w-[800px] max-w-[80vw]" : "max-w-sm")}>
+      <DialogContent
+        placement="top"
+        className={cx(bgColor, large ? "w-[800px] max-w-[80vw]" : "max-w-sm")}
+      >
         <div className="YodoModal overflow-x-hidden px-1 py-1">
           {closable && (
-            <div className="absolute top-7 right-6">
+            <div className={cx("absolute", "top-7", "right-6", textContentSubtle)}>
               <YodoIcon type="x" pointer onClick={() => onClose?.()} />
             </div>
           )}

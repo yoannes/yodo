@@ -1,8 +1,8 @@
-import { borderColor } from "@consts";
+import { MOBILE_BREAKPOINT, bgBrandFaint, borderColor } from "@consts";
 import { LayoutProps } from "@layouts";
 import { DB, cx } from "@utils";
 import React, { useRef, useState } from "react";
-import { SideMenu } from "./components";
+import { MobileHeader, SideMenu } from "./components";
 
 const STORAGE_KEY = "sidebarWidth";
 const MIN_WIDTH = 200;
@@ -10,6 +10,8 @@ const MIN_WIDTH = 200;
 const DefaultLayout: React.FC<LayoutProps> = ({ children }) => {
   const [sidebarWidth, setSidebarWidth] = useState(DB(STORAGE_KEY) || MIN_WIDTH);
   const resizerRef = useRef(0);
+
+  const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
 
   const startResizing = (e: React.MouseEvent) => {
     resizerRef.current = e.clientX;
@@ -32,12 +34,21 @@ const DefaultLayout: React.FC<LayoutProps> = ({ children }) => {
     document.removeEventListener("mouseup", stopResizing);
   };
 
+  if (isMobile) {
+    return (
+      <div className={cx(root, "flex-col")}>
+        <MobileHeader />
+        <div className="flex-1 flex justify-center">{children}</div>
+      </div>
+    );
+  }
+
   return (
-    <div className={classes.root}>
+    <div className={root}>
       <div style={{ width: sidebarWidth }}>
         <SideMenu />
       </div>
-      <div className={cx(classes.resize, classes.borderLeft)} onMouseDown={startResizing} />
+      <div className={cx(resize, borderLeft)} onMouseDown={startResizing} />
       <div
         className="flex-1 flex justify-center"
         style={{ width: `calc(100vw - ${sidebarWidth}px)` }}
@@ -48,16 +59,9 @@ const DefaultLayout: React.FC<LayoutProps> = ({ children }) => {
   );
 };
 
-const classes = {
-  root: cx(
-    "flex",
-    "h-screen",
-    "bg-tremor-background-muted",
-    "dark:bg-dark-tremor-background-muted",
-  ),
-  resize: cx("w-[5px]", "cursor-col-resize"),
-  borderLeft: cx("border-l", borderColor),
-};
+const root = cx("flex", "h-screen", bgBrandFaint);
+const resize = cx("w-[5px]", "cursor-col-resize");
+const borderLeft = cx("border-l", borderColor);
 
 DefaultLayout.displayName = "DefaultLayout";
 
