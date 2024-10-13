@@ -65,7 +65,9 @@ const YodoInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>((pro
         />
       )}
 
-      {props.errorMessage && <span className="text-red-500">{props.errorMessage}</span>}
+      {props.errorMessage && (
+        <span className="text-xs text-red-500 mt-1">{props.errorMessage}</span>
+      )}
     </div>
   );
 });
