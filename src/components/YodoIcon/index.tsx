@@ -7,6 +7,8 @@ import "./css.css";
 interface Props {
   type: IconType;
   size?: number;
+  width?: number;
+  height?: number;
   className?: string;
   style?: React.CSSProperties;
   pointer?: boolean;
@@ -17,7 +19,7 @@ interface Props {
 const local: Record<string, string> = {};
 
 const YodoIcon: React.FC<Props> = memo(
-  ({ type, size = 16, className, style, pointer, spin, onClick }) => {
+  ({ type, size = 16, width, height, className, style, pointer, spin, onClick }) => {
     const [svgContent, setSvgContent] = useState(local[type] || "");
 
     useEffect(() => {
@@ -37,8 +39,8 @@ const YodoIcon: React.FC<Props> = memo(
     return (
       <div
         style={{
-          width: size,
-          height: size,
+          width: width || size,
+          height: height || size,
           ...(style || {}),
         }}
         className={cx("YodoIcon", className, pointer && "cursor-pointer", spin && "animate-spin")}

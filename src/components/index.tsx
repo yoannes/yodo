@@ -6,5 +6,6 @@ export { default as YodoDropdown } from "./YodoDropdown";
 export { default as YodoIcon } from "./YodoIcon";
 export * from "./YodoIcon/types";
 export { default as YodoInput } from "./YodoInput";
+export { default as YodoLoading } from "./YodoLoading";
 export { default as YodoModal } from "./YodoModal";
 export * from "./YodoToast";

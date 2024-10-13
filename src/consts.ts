@@ -4,6 +4,8 @@ export const HOUR = MINUTE * 60;
 export const DAY = HOUR * 24;
 export const MONTH = DAY * 30;
 
+export const MOBILE_BREAKPOINT = 768;
+
 export const Collections = {
   Users: "Users",
   Tasks: "Tasks",
@@ -16,10 +18,14 @@ export const textContentEmphasis =
 export const textContent = "text-tremor-content dark:text-dark-tremor-content";
 export const textContentStrong = "text-tremor-content-strong dark:text-dark-tremor-content-strong";
 export const borderColor = "border-tremor-border dark:border-dark-tremor-border";
+
+// Backgrounds
 export const bgColor = "bg-tremor-background dark:bg-dark-tremor-background";
 export const bgBrandSubtle = "bg-tremor-brand-subtle dark:bg-dark-tremor-brand-subtle";
+export const bgBrandFaint = "bg-tremor-brand-faint dark:bg-dark-tremor-brand-faint";
 export const bgGreenColor = "bg-green";
 export const bgRedColor = "bg-red";
+
 export const greenColor = "emerald-500";
 export const redColor = "rose-700";
 export const hoverBgMuted =

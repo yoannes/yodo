@@ -22,7 +22,7 @@ localforage.config({
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider enableSystem={false} attribute="class">
+    <ThemeProvider enableSystem attribute="class">
       <AppProvider>
         <App />
       </AppProvider>

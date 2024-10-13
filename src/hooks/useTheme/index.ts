@@ -1,23 +1,14 @@
 import { useTheme as useNextTheme } from "next-themes";
-import { useEffect, useMemo } from "react";
-
-let mounted = false;
+import { useMemo } from "react";
 
 export function useTheme() {
-  const { theme, setTheme } = useNextTheme();
-
-  useEffect(() => {
-    if (mounted) return;
-    mounted = true;
-    if (!theme) {
-      setTheme("light");
-    }
-  }, []);
+  const { theme, setTheme, systemTheme } = useNextTheme();
 
   return useMemo(() => {
     return {
       theme,
       setTheme,
+      systemTheme,
     };
   }, [setTheme, theme]);
 }

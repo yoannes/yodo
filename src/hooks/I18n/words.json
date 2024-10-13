@@ -5,6 +5,18 @@
     "pt": "",
     "es": ""
   },
+  "Signup or login into your account here": {
+    "en": "Signup or login into your account here",
+    "ja": "ここでアカウントにサインアップまたはログイン",
+    "pt": "Cadastre-se ou faça login em sua conta aqui",
+    "es": "Regístrese o inicie sesión en su cuenta aquí"
+  },
+  "letsStart": {
+    "en": "Let's start 🚀",
+    "ja": "始めましょう 🚀",
+    "pt": "Vamos começar 🚀",
+    "es": "Empecemos 🚀"
+  },
   "saving": {
     "en": "Saving",
     "ja": "保存中",
