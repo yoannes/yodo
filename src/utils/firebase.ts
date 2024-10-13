@@ -307,8 +307,6 @@ export function firebaseUpdate<T>(collationName: string, id: string, data: Parti
 }
 
 export function firebaseDelete(collationName: string, id: string) {
-  console.log("delete", dayjs().unix());
-
   return updateDoc(doc(db, collationName, id), {
     updatedAt: dayjs().unix(),
     deleted: {

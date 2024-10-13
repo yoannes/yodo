@@ -8,6 +8,7 @@ export function mapTaskToCollection(task: Task): TaskCollection {
     createdAt: task.createdAt.unix(),
     updatedAt: task.updatedAt.unix(),
     completedAt: task.completedAt ? task.completedAt.unix() : null,
+    deleted: task.deleted,
   };
 }
 
@@ -19,5 +20,6 @@ export function mapCollectionToTask(id: TaskId, collection: TaskCollection): Tas
     createdAt: dayjs.unix(collection.createdAt),
     updatedAt: dayjs.unix(collection.updatedAt),
     completedAt: collection.completedAt ? dayjs.unix(collection.completedAt) : null,
+    deleted: collection.deleted,
   };
 }
