@@ -1,7 +1,7 @@
 import { Collections } from "@consts";
 import { lang } from "@hooks";
 import { UserCollection } from "@types";
-import { AuthUser, firebaseAdd, firebaseGet, logger } from "@utils";
+import { AuthUser, firebaseAdd, firebaseGet, identifyUser, logger, setUser, track } from "@utils";
 
 export async function createUserIfNotExists(authUser: AuthUser) {
   const exists = await firebaseGet<UserCollection>({
@@ -10,6 +10,7 @@ export async function createUserIfNotExists(authUser: AuthUser) {
   });
 
   if (exists.status === "OK") {
+    identifyUser(exists.results![0].id);
     return exists.results![0];
   }
 
@@ -27,7 +28,10 @@ export async function createUserIfNotExists(authUser: AuthUser) {
     };
     const res = await firebaseAdd<UserCollection>(Collections.Users, payload);
 
-    if (res.status === "OK") {
+    if (res.status === "OK" && res.result) {
+      track("Sign Up", { userId: res.result.id, email: authUser.email });
+      identifyUser(res.result.id);
+      setUser(authUser.displayName || "", authUser.email || "");
       dispatchSlack({
         email: authUser.email || "",
         name: authUser.displayName || "",

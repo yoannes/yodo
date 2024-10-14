@@ -4,6 +4,7 @@
 interface ImportMetaEnv {
   readonly DEV: boolean;
   readonly VITE_FIREBASE: string;
+  readonly VITE_MIXPANEL: string;
 }
 
 interface ImportMeta {

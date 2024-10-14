@@ -85,6 +85,7 @@ const CreateTask: React.FC<Props> = () => {
           label={t("taskTitle")}
           placeholder={t("Try to take over the world")}
           errorMessage={noTitleErr ? t("Title is required") : undefined}
+          onEnter={createTask}
           onChange={(v) => {
             const value = v as string;
             setTitle(value);

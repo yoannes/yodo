@@ -7,6 +7,7 @@ import {
   firebaseGetCount,
   firebaseUndelete,
   firebaseUpdate,
+  track,
 } from "@utils";
 import { useCallback, useMemo } from "react";
 import { useAppDispatch, useAppState } from "../../context/AppStateHooks";
@@ -41,6 +42,8 @@ export function useTasks() {
     const collection = `${Collections.Users}/${auth.user.id}/${Collections.Tasks}`;
     const res = await firebaseAdd<TaskCollection>(collection, t);
 
+    track("Create task", { taskId: res.result?.id });
+
     return res.status === "OK";
   };
 
@@ -50,6 +53,12 @@ export function useTasks() {
     try {
       const collection = `${Collections.Users}/${auth.user.id}/${Collections.Tasks}`;
       await firebaseUpdate<TaskCollection>(collection, id, payload);
+
+      if (payload.completedAt) {
+        track("Complete task", { taskId: id });
+      } else {
+        track("Edit task", { taskId: id });
+      }
       return true;
     } catch (error) {
       return false;
@@ -62,6 +71,8 @@ export function useTasks() {
     try {
       const collection = `${Collections.Users}/${auth.user.id}/${Collections.Tasks}`;
       await firebaseDelete(collection, id);
+
+      track("Delete task", { taskId: id });
 
       setTasks((prev) => {
         const { [id]: _, ...rest } = prev.list;
