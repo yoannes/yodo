@@ -33,6 +33,7 @@ jobs:
         run: pnpm build
         env:
           VITE_FIREBASE: "${{ secrets.VITE_FIREBASE }}"
+          VITE_SLACK_WEBHOOK_URL: "${{ secrets.VITE_SLACK_WEBHOOK_URL }}"
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
