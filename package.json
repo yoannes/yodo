@@ -1,7 +1,7 @@
 {
   "name": "yodo",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "scripts": {
     "dev": "pnpm run kill-emulator && npm-run-all -p dev:*",
