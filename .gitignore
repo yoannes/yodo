@@ -29,3 +29,5 @@ tsconfig.node.tsbuildinfo
 .env
 .firebase
 emulator-data
+
+.pnpm-store
